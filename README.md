@@ -11,6 +11,7 @@
 - [云开发文档] https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html
 - [小程序开发指南教程] https://developers.weixin.qq.com/ebook?action=get_post_info&docid=0008aeea9a8978ab0086a685851c0a
 - [小程序云开发公共课资料] https://docs.qq.com/doc/DY1J1RUFWcVhveU9p
+---
 
 ## 需求分析
 
@@ -20,13 +21,14 @@
 #### （2）获取用户基本信息
 ```
   userInfo:{
+    "userId": int,          //用户id
     "userAvatar": String,   //用户头像，每次进入小程序时获取
     "userName": String,     //用户名，每次进入小程序时获取
     "userLocation": String, //用户地理位置，每次进入小程序时获取
     "userAddress":[         //用户地址信息，用户自己填写
       {
-        "addressName": String,
-        "addressDesc": String,
+        "addressName": String,    //地址名称（如家、公司）
+        "addressDesc": String,    //详细地址
       },
       {...},
       ...
@@ -53,11 +55,12 @@
     "totalCount": int,           //记录所有商品数量
     "items":[
       {
-        "id": int,          //商品id
+        "item_id": int,          //商品id
         "name": String,     //商品名称
         "price": double,    //商品单价
         "count": int,       //商品个数
         "itemPrice": double,    //商品单价 * 商品个数
+        "image_url": String,    //商品图片
         "desc": String      //商品描述
       }，
       {...},
@@ -73,18 +76,20 @@
 
 ```
   order:{
-    "id": int,
-    "time": long,
+    "order_id": int,
+    "userId": int,          //所属用户id
+    "time": long,           //下单时间戳
     "flag": int,            //记录订单状态，已下单、已发货、已收货、已评价
     "totalMoney": double,   //记录购物车所有商品金额
     "totalCount": int,           //记录所有商品数量
     "items":[
       {
-        "id": int,          //商品id
+        "item_id": int,          //商品id
         "name": String,     //商品名称
         "price": double,    //商品单价
         "count": int,       //商品个数
         "itemPrice": double,    //商品单价 * 商品个数
+        "image_url": String,    //商品图片
         "desc": String      //商品描述
       }，
       {...},
@@ -95,7 +100,75 @@
 ---
 
 ### 4、订单查询
-每个用户可以查看自己的订单
+使用多表查询，连接orders表和uses表，可实现每个用户查看自己的订单
 
-  
+---
+## 云数据库
+### 1、items表：记录商品信息
+```
+  //sql语法
+  create table items if not exists(
+    item_id int primary key auto_increment,          //商品id
+    name varchar(20) not null,     //商品名称
+    price double not null,         //商品单价
+    image_url varchar(50),         //商品图片
+    desc varchar(20)               //商品描述
+  )
+```
+
+```
+  //json格式
+  item:{
+    "item_id": int,              //商品id
+    "name" String,          //商品名称
+    "price" double,         //商品单价
+    "image_url": String,    //商品图片
+    "desc" String           //商品描述
+  }
+```
+
+### 2、users表：记录用户信息
+```
+  /json格式
+  userInfo:{
+    "userId": int,          //用户id
+    "userAvatar": String,   //用户头像，每次进入小程序时获取
+    "userName": String,     //用户名，每次进入小程序时获取
+    "userLocation": String, //用户地理位置，每次进入小程序时获取
+    "userAddress":[         //用户地址信息，用户自己填写
+      {
+        "addressName": String,    //地址名称（如家、公司）
+        "addressDesc": String,    //详细地址
+      },
+      {...},
+      ...
+    ]
+  }
+```
+
+### 3、orders表：记录订单信息
+```
+  //json格式
+  order:{
+    "order_id": int,              //订单id
+    "userId": int,          //所属用户id
+    "time": long,           //下单时间戳
+    "flag": int,            //记录订单状态，已下单、已发货、已收货、已评价
+    "totalMoney": double,   //记录购物车所有商品金额
+    "totalCount": int,           //记录所有商品数量
+    "items":[
+      {
+        "item_id": int,          //商品id
+        "name": String,     //商品名称
+        "price": double,    //商品单价
+        "count": int,       //商品个数
+        "itemPrice": double,    //商品单价 * 商品个数
+        "image_url": String,    //商品图片
+        "desc": String      //商品描述
+      }，
+      {...},
+      ...
+    ]
+  }
+```
 
