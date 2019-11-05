@@ -18,21 +18,21 @@
 #### （1）用户位置定位
 
 #### （2）获取用户基本信息
-'''
-userInfo:{
-  "userAvatar": String,   //用户头像，每次进入小程序时获取
-  "userName": String,     //用户名，每次进入小程序时获取
-  "userLocation": String, //用户地理位置，每次进入小程序时获取
-  "userAddress":[         //用户地址信息，用户自己填写
-    {
-      "addressName": String,
-      "addressDesc": String,
-    },
-    {...},
-    ...
-  ]
-}
-'''
+```
+  userInfo:{
+    "userAvatar": String,   //用户头像，每次进入小程序时获取
+    "userName": String,     //用户名，每次进入小程序时获取
+    "userLocation": String, //用户地理位置，每次进入小程序时获取
+    "userAddress":[         //用户地址信息，用户自己填写
+      {
+        "addressName": String,
+        "addressDesc": String,
+      },
+      {...},
+      ...
+    ]
+  }
+```
 ---
 
 ### 2、购物功能
@@ -47,50 +47,51 @@ userInfo:{
 #### （3）商品详细页面（最后完成）
 
 #### （4）代码分析
-'''
-cart:{
-  "totalMoney": double,   //记录购物车所有商品金额
-  "totalCount": int,           //记录所有商品数量
-  "items":[
-    {
-      "id": int,          //商品id
-      "name": String,     //商品名称
-      "price": double,    //商品单价
-      "count": int,       //商品个数
-      "itemPrice": double,    //商品单价 * 商品个数
-      "desc": String      //商品描述
-    }，
-    {...},
-    ...
-  ]
-}
-'''
+```
+  cart:{
+    "totalMoney": double,   //记录购物车所有商品金额
+    "totalCount": int,           //记录所有商品数量
+    "items":[
+      {
+        "id": int,          //商品id
+        "name": String,     //商品名称
+        "price": double,    //商品单价
+        "count": int,       //商品个数
+        "itemPrice": double,    //商品单价 * 商品个数
+        "desc": String      //商品描述
+      }，
+      {...},
+      ...
+    ]
+  }
+```
 每次操作购物车时对数据进行更新
 ---
 
 ### 3、订单提交
 用户购物完毕后，进入付款界面，订单提交（此处必须有事务处理，避免付款后没有提交订单）
-'''
-order:{
-  "id": int,
-  "time": long,
-  "flag": int,            //记录订单状态，已下单、已发货、已收货、已评价
-  "totalMoney": double,   //记录购物车所有商品金额
-  "totalCount": int,           //记录所有商品数量
-  "items":[
-    {
-      "id": int,          //商品id
-      "name": String,     //商品名称
-      "price": double,    //商品单价
-      "count": int,       //商品个数
-      "itemPrice": double,    //商品单价 * 商品个数
-      "desc": String      //商品描述
-    }，
-    {...},
-    ...
-  ]
-}
-'''
+
+```
+  order:{
+    "id": int,
+    "time": long,
+    "flag": int,            //记录订单状态，已下单、已发货、已收货、已评价
+    "totalMoney": double,   //记录购物车所有商品金额
+    "totalCount": int,           //记录所有商品数量
+    "items":[
+      {
+        "id": int,          //商品id
+        "name": String,     //商品名称
+        "price": double,    //商品单价
+        "count": int,       //商品个数
+        "itemPrice": double,    //商品单价 * 商品个数
+        "desc": String      //商品描述
+      }，
+      {...},
+      ...
+    ]
+  }
+```
 ---
 
 ### 4、订单查询
