@@ -1,5 +1,9 @@
 {
   "pages": [
+    "page/component/index/index",
+    "page/component/clockin/clockin",
+    "page/component/share/share",
+"page/component/user/user",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -14,13 +18,46 @@
     "pages/im/im",
     "pages/im/room/room"
   ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
-  },
+ "window": {
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#AB956D",
+  "navigationBarTitleText": "HyperVinci",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true
+},
+"tabBar": {
+  "color": "#b7b7b7",
+  "selectedColor": "#AB956D",
+  "borderStyle": "white",
+  "backgroundColor": "#f5f5f5",
+  "list": [
+    {
+      "pagePath": "page/component/index/index",
+      "iconPath": "image/12.png",
+      "selectedIconPath": "image/11.png",
+      "text": "主页"
+    },
+    {
+      "pagePath": "page/component/clockin/clockin",
+      "iconPath": "image/clockin1.png",
+      "selectedIconPath": "image/clockin.png",
+      "text": "打卡"
+    },
+    {
+      "pagePath": "page/component/share/share",
+      "iconPath": "image/share2.png",
+      "selectedIconPath": "image/share1.png",
+      "text": "分享"
+    },
+    {
+      "pagePath": "page/component/user/user",
+      "iconPath": "image/42.png",
+      "selectedIconPath": "image/41.png",
+      "text": "我的"
+    }
+  ]
+},
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
