@@ -23,14 +23,12 @@ Page({
     var that = this;
     //需要点击登录按钮才会触发
     console.log(e)
-    console.log(that.data.userInfo);
-    console.log(e.detail.userInfo);
+
     that.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-      avatarUrl: e.detail.userInfo.avatarUrl
+      hasUserInfo: true
     })
-    console.log(that.data); //这里会在页面加载完成之后才会执行函数，后续可能要增加回调函数或者写入本地缓存，下次用户无需要写按钮
+    console.log("data", that.data); //这里会在页面加载完成之后才会执行函数，后续可能要增加回调函数或者写入本地缓存，下次用户无需要写按钮
   },
   /**
    * 生命周期函数--监听页面加载
@@ -38,16 +36,8 @@ Page({
   onLoad: function(options) {
     var that = this;
     //调用getUserMes云函数
-    wx.cloud.callFunction({
-      name: "getUserMes",
-      complete: res => {
-        // console.log(res);
-        that.setData({
-// imgUrl:res
-        })
 
-      }
-    })
+
     var that = this;
     that.getLocation(); //调用获取用户的地理位置
     //当组件不存在时，提示用户更新微信版本
@@ -133,6 +123,16 @@ Page({
     var self = this;
     self.setData({
       hiddenReAuthorizePop: false
+    })
+  },
+
+  //跳转到商品列表
+  toList: function () {
+    wx.navigateTo({
+      url: '/page/component/list/list',
+      success: function (res) { console.log('商品列表跳转成功') },
+      fail: function (res) { console.log('商品列表跳转失败') },
+      complete: function (res) { console.log('商品列表跳转完成') },
     })
   },
 

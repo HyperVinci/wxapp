@@ -8,7 +8,7 @@
    <button class="head_name head_name_btn" wx:if="{{!(hasUserInfo && canIUse)}}" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">登录</button>
    <block wx:else>
      <view class="head_name">
-        <image class="head_img" src="{{avatarUrl}}"></image>
+        <image class="head_img" src="{{userInfo.avatarUrl}}"></image>
         <text class="head_txt">{{userInfo.nickName}}</text>
      </view>
    </block>
@@ -27,3 +27,6 @@
 
 <view class="location_detail">
 你当前的具体位置是：{{location}}</view>
+
+<br/>
+<button type="default" bindtap="toList">商品列表</button>

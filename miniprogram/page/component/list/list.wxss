@@ -1,0 +1,26 @@
+/* page/component/index/index.wxss */
+.action{
+  display: "flex";
+  width: 200rpx !important
+}
+
+.price{
+  margin-left: 10rpx
+}
+
+.item-count{
+  display: "flex";
+  margin-top: 5rpx !important
+}
+
+.number{
+  flex: 2;
+  margin-left:15rpx !important;
+  margin-right:15rpx !important;
+}
+
+.update-number{
+  flex: 1;
+  margin-top: 0 !important;
+  margin-left:0rpx !important;
+}
