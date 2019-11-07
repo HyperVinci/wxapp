@@ -1,6 +1,6 @@
 <scroll-view  class="page">
-  <view class="cu-list menu-avatar" wx:for="{{items}}">
-    <view class="cu-item" wx:key="{{index}}">
+  <view class="cu-list menu-avatar" wx:for="{{items}}" wx:key="{{index}}">
+    <view class="cu-item">
       <view class="cu-avatar round lg" style="background-image:url({{item.image_url}});"></view>
       <view class="content">
         <view class="text-pink">

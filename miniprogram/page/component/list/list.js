@@ -5,25 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items:[
-      {
-        "item_id": 1,             //商品id
-        "name": "萨格尔王",          //商品名称
-        "price" : "999.99",         //商品单价
-        "type": "文学经典",
-        "image_url": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg', //商品图片
-        "desc" : "格萨尔王"          //商品描述
-      },
 
-      {
-        "item_id": 2,           
-        "name": "金科律玉的教科书",      
-        "price": "999.99",    
-        "type": "教科书",   
-        "image_url": 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg',            
-        "desc": "颐使气指的教师爷"    
-      }
-    ]
+    items:[]
 
   },
 
@@ -31,7 +14,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    console.log("获取items", this.data.items)
+    wx.cloud.callFunction({
+      name: "getItems",
+      data: {
 
+      },
+      success: res =>{
+        console.log(res.result.data)
+        that.setData({
+          items: res.result.data
+        })
+        console.log("获取items成功", that.data.items)
+      },
+      fail: res=>{
+        console.log("获取items失败", that.data.items)
+      }
+    })
   },
 
   /**

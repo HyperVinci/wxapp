@@ -1,7 +1,8 @@
 /* page/component/index/index.wxss */
 .action{
+  margin-left: 15rpx;
   display: "flex";
-  width: 200rpx !important
+  width: 180rpx !important
 }
 
 .price{
