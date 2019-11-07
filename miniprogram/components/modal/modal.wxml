@@ -1,0 +1,15 @@
+<view hidden='{{hidden}}' class='{{name?name:""}}'>
+  <view class='mask_layer'/>
+  <view class='modal_box'>
+    <view class="title"></view>
+    <view class='content'>
+      <text class='modalMsg'>{{content}}</text>
+      <slot></slot>
+    </view>
+    <view class='btn' wx:if="{{type=='modal'||type==''}}">
+      <view bindtap='cancel' class='cancel' wx:if="{{showCancel}}" style="color:{{cancelColor}}">{{cancelTxt}}</view>
+      <view bindtap='confirm' class='confirm' wx:if="{{showConfirm}}" style="color:{{confirmColor}}">{{confirmTxt}}</view>
+    </view>
+  </view>
+  <view class="close" wx:if="{{type=='slot'}}" bindtap='hideModal'></view>
+</view>

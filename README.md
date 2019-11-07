@@ -172,3 +172,4 @@
   }
 ```
 
+### 主要事项，要使用腾讯地图api需要到https://lbs.qq.com/qqmap_wx_jssdk/index.html这里注册账号并且填入到首页index.js的开头的key中

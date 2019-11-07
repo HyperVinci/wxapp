@@ -1,2 +1,29 @@
-<!--page/component/index/index.wxml-->
-<text>page/component/index/index.wxml</text>
+<!-- 头像 单纯展示数据-->
+<!-- <open-data type="userAvatarUrl" class="head_name_img"></open-data>
+<!-- 昵称 -->
+<!-- <open-data type="userNickName" lang="zh_CN" class = "head_name_txt"></open-data> --> 
+
+<!-- 通过button获取到用户头像和昵称，并关联getUserInfo保存数据到data中 -->
+
+   <button class="head_name head_name_btn" wx:if="{{!(hasUserInfo && canIUse)}}" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">登录</button>
+   <block wx:else>
+     <view class="head_name">
+        <image class="head_img" src="{{avatarUrl}}"></image>
+        <text class="head_txt">{{userInfo.nickName}}</text>
+     </view>
+   </block>
+
+
+
+<text>获取用户地理位置信息</text>
+<text class="block">latitude:{{latitude}}</text>
+<text class='block'>longitude:{{longitude}}</text>
+<modal name="reAuthorizePop" hidden="{{hiddenReAuthorizePop}}" content="{{content}}" type="slot">
+<view class="btn">
+  <button type="mini" plain="true" type="primary" bindtap='openLocationSetting'>请重新授权</button>
+</view>
+</modal>
+
+
+<view class="location_detail">
+你当前的具体位置是：{{location}}</view>

@@ -3,20 +3,8 @@
     "page/component/index/index",
     "page/component/clockin/clockin",
     "page/component/share/share",
-"page/component/user/user",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "page/component/user/user",
+    "page/component/address/address"
   ],
  "window": {
   "backgroundColor": "#eeeeee",
@@ -57,6 +45,11 @@
       "text": "我的"
     }
   ]
+},
+"permission":{
+"scope.userLocation":{
+  "desc":"需要记录打卡时的位置信息"
+}
 },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
