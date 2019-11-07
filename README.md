@@ -21,9 +21,10 @@
 #### （2）获取用户基本信息
 ```
   userInfo:{
-    "userId": int,          //用户id
-    "userAvatar": String,   //用户头像，每次进入小程序时获取
-    "userName": String,     //用户名，每次进入小程序时获取
+    "_id": String,          //用户id
+    "avatarUrl": String,    //用户头像，每次进入小程序时获取
+    "nickName": String,     //用户名，每次进入小程序时获取
+    "gender": int,          //1表示男
     "userLocation": String, //用户地理位置，每次进入小程序时获取
     "userAddress":[         //用户地址信息，用户自己填写
       {
@@ -104,7 +105,7 @@
 
 
 ## 云数据库
-### 1、items表：记录商品信息
+### 1、items表：记录商品信息，在后台由管理员添加。当用户进入到商品浏览页面时获取商品信息
 ```
   //sql语法
   create table items if not exists(
@@ -119,21 +120,23 @@
 ```
   //json格式
   item:{
-    "item_id": int,              //商品id
+    "_id": int,              //商品id
     "name" String,          //商品名称
     "price" double,         //商品单价
+    "type" String           //商品类别
     "image_url": String,    //商品图片
     "desc" String           //商品描述
   }
 ```
 
-### 2、users表：记录用户信息
+### 2、users表：记录用户信息。当用户退出小程序时，小程序上传用户信息
 ```
   /json格式
   userInfo:{
-    "userId": int,          //用户id
-    "userAvatar": String,   //用户头像，每次进入小程序时获取
-    "userName": String,     //用户名，每次进入小程序时获取
+    "_id": String,          //用户id
+    "avatarUrl": String,    //用户头像，每次进入小程序时获取
+    "nickName": String,     //用户名，每次进入小程序时获取
+    "gender": int,          //1表示男
     "userLocation": String, //用户地理位置，每次进入小程序时获取
     "userAddress":[         //用户地址信息，用户自己填写
       {
@@ -146,11 +149,11 @@
   }
 ```
 
-### 3、orders表：记录订单信息
+### 3、orders表：记录订单信息。当用户下单时，
 ```
   //json格式
   order:{
-    "order_id": int,              //订单id
+    "_id": int,              //订单id
     "userId": int,          //所属用户id
     "time": long,           //下单时间戳
     "flag": int,            //记录订单状态，已下单、已发货、已收货、已评价
@@ -159,12 +162,11 @@
     "items":[
       {
         "item_id": int,          //商品id
-        "name": String,     //商品名称
-        "price": double,    //商品单价
-        "count": int,       //商品个数
-        "itemPrice": double,    //商品单价 * 商品个数
-        "image_url": String,    //商品图片
-        "desc": String      //商品描述
+        "name": String,          //商品名称
+        "price": double,         //商品单价，由于商品单价可能会变动，所有要存储购买时单价
+        "type": String           //商品类别
+        "count": int,            //商品个数
+        "itemPrice": double,     //商品单价 * 商品个数
       }，
       {...},
       ...
