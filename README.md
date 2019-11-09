@@ -11,6 +11,9 @@
 - [云开发文档] https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html
 - [小程序开发指南教程] https://developers.weixin.qq.com/ebook?action=get_post_info&docid=0008aeea9a8978ab0086a685851c0a
 - [小程序云开发公共课资料] https://docs.qq.com/doc/DY1J1RUFWcVhveU9p
+- [腾讯位置服务] https://lbs.qq.com/qqmap_wx_jssdk/index.html
+- [6个最优秀的微信小程序UI组件库] https://www.jianshu.com/p/4182f4a18cb6
+- [vant ui组件库] https://youzan.github.io/vant-weapp/#/intro
 ---
 
 ## 需求分析
