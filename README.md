@@ -11,6 +11,9 @@
 - [云开发文档] https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html
 - [小程序开发指南教程] https://developers.weixin.qq.com/ebook?action=get_post_info&docid=0008aeea9a8978ab0086a685851c0a
 - [小程序云开发公共课资料] https://docs.qq.com/doc/DY1J1RUFWcVhveU9p
+- [腾讯位置服务] https://lbs.qq.com/qqmap_wx_jssdk/index.html
+- [6个最优秀的微信小程序UI组件库] https://www.jianshu.com/p/4182f4a18cb6
+- [vant ui组件库] https://youzan.github.io/vant-weapp/#/intro
 ---
 
 ## 需求分析
@@ -42,7 +45,10 @@
 ##### 左侧为导航栏，记录商品种类
 ##### 右侧为商品列表
 在导航栏可选取商品种类，右侧会显示该种类的所有商品，并且可以将商品加入购物车。
+每条商品列表显示商品名称、单价、描述、购买数量（默认为0）、+按钮和-按钮。点击+按钮会使购买数量+1，点击-按钮会使购买数量-1（下限为0），且会调用setData方法，使cart中的对应item的count自增或自减。
+
 ##### 底部有一条长条形记录，显示当前购物车所有商品金额，并且点击记录会打开购物车详细列表
+底部记录左侧显示购物车总金额和商品总件数，右侧有下单按钮。点击下单按钮会进入购物车详细列表，列举购物车中每款商品的名称、单价、图片、购买数量、购买价格，最下方会有支付按钮。点击支付按钮跳转到支付页面。
 
 #### （2）购物车页面（可参考CC小商店或其他小程序）
 点击下方的购物车记录，会进入详细的购物车页面，显示所有已选商品的信息，并且有一个“提交订单”按钮用于用户提交订单
@@ -63,7 +69,6 @@
         "count": int,       //商品个数
         "itemPrice": double,    //商品单价 * 商品个数
         "image_url": String,    //商品图片
-        "desc": String      //商品描述
       }，
       {...},
       ...
