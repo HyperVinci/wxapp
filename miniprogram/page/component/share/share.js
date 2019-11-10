@@ -7,12 +7,28 @@ Page({
   data: {
 
   },
-
+  getURL: function (fileID) {
+    wx.cloud.init({
+      env: 'yejh-o2d0r'
+    })
+    wx.cloud.downloadFile({
+      fileID: fileID,
+      success: res => {
+        // get temp file path
+        console.log(res.tempFilePath)
+        return res.tempFilePath
+      },
+      fail: err => {
+        // handle error
+        console.log('getURL失败', err)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getURL('cloud://yejh-o2d0r.7965-yejh-o2d0r-1300611403/my-image.jpg')
   },
 
   /**

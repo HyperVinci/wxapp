@@ -14,7 +14,6 @@
    </block>
 
 
-
 <text>获取用户地理位置信息</text>
 <text class="block">latitude:{{latitude}}</text>
 <text class='block'>longitude:{{longitude}}</text>
@@ -30,3 +29,11 @@
 
 <br/>
 <button type="default" bindtap="toList">商品列表</button>
+
+
+<view class="padding bg-white">
+<view class="flex p-xs margin-bottom-sm mb-sm">
+<view class="flex-sub bg-grey padding-sm margin-xs radius">1</view>
+<view class="flex-twice bg-grey padding-sm margin-xs radius">2</view>
+</view>
+</view>
