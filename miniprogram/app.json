@@ -13,7 +13,7 @@
   "window": {
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#AB956D",
+    "navigationBarBackgroundColor": "#33a3dc",
     "navigationBarTitleText": "文麒",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
