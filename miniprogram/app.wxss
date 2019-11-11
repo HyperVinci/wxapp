@@ -1,7 +1,7 @@
 /* 导入colorUI库 */
 @import "colorui/main.wxss";
 @import "colorui/icon.wxss";
-
+@import "colorui/animation.wxss";
 /**app.wxss**/
 .container {
   display: flex;

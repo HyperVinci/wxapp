@@ -1,32 +1,155 @@
-<!-- 头像 单纯展示数据-->
-<!-- <open-data type="userAvatarUrl" class="head_name_img"></open-data>
-<!-- 昵称 -->
-<!-- <open-data type="userNickName" lang="zh_CN" class = "head_name_txt"></open-data> --> 
+<scroll-view class="mian">
+  <!-- <button type="default" bindtap="toList">商品列表</button> -->
+  <!-- 自定义导航栏 -->
+  <view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+      <view class="head-title canui-head-title">文麒</view>
+    </view>
+  </view>
 
-<!-- 通过button获取到用户头像和昵称，并关联getUserInfo保存数据到data中 -->
+  <!-- 首页轮播图 -->
+  <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <view class="swiper-item">
+        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+      </view>
+    </swiper-item>
+  </swiper>
 
-   <button class="head_name head_name_btn" wx:if="{{!(hasUserInfo && canIUse)}}" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">登录</button>
-   <block wx:else>
-     <view class="head_name">
-        <image class="head_img" src="{{userInfo.avatarUrl}}"></image>
-        <text class="head_txt">{{userInfo.nickName}}</text>
-     </view>
-   </block>
+  <!-- 首页的通知和公告 -->
+  <!-- <van-notice-bar scrollable="true" text="{{notice}}" /> -->
+  <!-- <van-notice-bar mode="closeable" text="{{notice}}" class="notice" /> -->
+  <swiper class="swiperitem  solid-bottom" vertical="true" circular="true" bindchange="lineschange" autoplay="true">
+    <block wx:for="{{Headlines}}" wx:key="item.id">
+      <swiper-item bindtap="linesclick" item-id="item.id">
+        <view class="cu-bar bg-white">
+          <view class='action'>
+            <text class='cuIcon-title text-green'></text>
+            <text>公告：{{item.title}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 功能
+    </view>
+  </view> -->
+
+  <!-- 页面的列表导航 -->
+  <!-- <van-grid clicakble column-num="4" gutter="{{ 12 }}">
+    <van-grid-item icon="../../../../image/clockin1.png" link-type="navigateTo" url="" text="打卡" />
+    <van-grid-item icon="../../../../image/share2.png" link-type="navigateTo" url="" text="分享" />
+    <van-grid-item icon="../../../../image/shopping.png" link-type="navigateTo" url="" text="商城" />
+    <van-grid-item icon="../../../../image/articles.png" link-type="navigateTo" url="" text="精选文章" />
+  </van-grid> -->
+
+  <!-- <view class="padding bg-white">
+    <view class="flex  p-xs margin-bottom-sm mb-sm">
+      <view class="flex-sub bg-grey padding-sm margin-xs radius">1</view>
+      <view class="flex-twice bg-grey padding-sm margin-xs radius">2</view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm">
+      <view class="flex-twice bg-grey padding-sm margin-xs radius">2</view>
+      <view class="flex-sub bg-grey padding-sm margin-xs radius">1</view>
+    </view>
+  </view> -->
+  <view class="cu-list grid col-4 no-border">
+    <block wx:for="{{iconList}}" wx:key="item.id">
+      <view class="cu-item" bindtap="itemckcred" data-index="{{item.id}}" data-itemtype="{{item.type}}">
+        <view class='cuIcon-{{item.icon}} text-{{item.color}}'> </view>
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
 
 
-
-<text>获取用户地理位置信息</text>
-<text class="block">latitude:{{latitude}}</text>
-<text class='block'>longitude:{{longitude}}</text>
-<modal name="reAuthorizePop" hidden="{{hiddenReAuthorizePop}}" content="{{content}}" type="slot">
-<view class="btn">
-  <button type="mini" plain="true" type="primary" bindtap='openLocationSetting'>请重新授权</button>
+<!-- 精选文章模块 -->
+<view class="cu-bar bg-white margin-top solid-bottom">
+    <view class='action'>
+        <text class='cuIcon-title text-green'></text>
+        <text>精选文章</text>
+    </view>
+    <navigator hover-class='none' url="">
+        <view class='action' style="font-size: 27rpx;"> 更多 <view class='cuIcon-right'></view> </view>
+    </navigator>
 </view>
-</modal>
 
 
-<view class="location_detail">
-你当前的具体位置是：{{location}}</view>
+<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('/image/色达.jpg');height: 414rpx;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+      色达佛学院
+    </view>
+    <view class="padding-xs">
+      最后一篇片心灵净土
+    </view>
+  </view>
+</view>
+<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('/image/西江苗寨.jpg');height: 414rpx;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+    西江千户苗寨
+    </view>
+    <view class="padding-xs">
+      以美丽回答一切
+    </view>
+  </view>
+</view>
+<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('/image/青岩古镇.jpg');height: 414rpx;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+      青岩古镇
+    </view>
+    <view class="padding-xs">
+     在斑驳的街道上，诉说的过去和现在
+         </view>
+  </view>
+</view>
+<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('/image/苗族.jpg');height: 414rpx;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+      苗族少女
+    </view>
+    <view class="padding-xs">
+      青春活力的岁月
+    </view>
+  </view>
+</view>
 
-<br/>
-<button type="default" bindtap="toList">商品列表</button>
+
+
+  
+  <scroll-view scroll-x class="bg-white nav">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{2}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+        Tab{{index}}
+
+      </view>
+    </view>
+  </scroll-view>
+  <view class="cu-bar margin-top bg-white solid-bottom" hidden="{{TabCur!=0}}">
+    <view class="action">
+      <text class="cuIcon-title text-blue"></text>按钮尺寸
+    </view>
+  </view>
+  <view class="cu-bar margin-top bg-white solid-bottom" hidden="{{TabCur!=1}}">
+    <view class="action">
+      <text class="cuIcon-title text-blue"></text>按钮大小
+    </view>
+  </view>
+</scroll-view>
+
+<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');height: 414rpx;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+      钢铁之翼
+    </view>
+    <view class="padding-xs">
+      Only the guilty need fear me.
+    </view>
+  </view>
+</view>

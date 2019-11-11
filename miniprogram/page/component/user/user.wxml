@@ -1,0 +1,98 @@
+<!-- 头像 单纯展示数据 -->
+<!-- <open-data type="userAvatarUrl" class="head_name_img"></open-data>
+<!-- 昵称 -->
+<!-- <open-data type="userNickName" lang="zh_CN" class = "head_name_txt"></open-data> -->
+
+<!-- 通过button获取到用户头像和昵称，并关联getUserInfo保存数据到data中 -->
+<!-- <button class="head_name head_name_btn" wx:if="{{!(userInfo && hasUserInfo)}}" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">登录</button>
+<block wx:else>
+  <view class="padding">
+    <view class="cu-avatar round lg margin-left" style="background-image:url({{userInfo.avatarUrl}});">
+      <view class="cu-tag badge {{(userInfo.gender==0)?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+    </view>
+    <text class="userName">
+    {{userInfo.nickName}}
+    </text>
+  </view>
+</block>
+
+
+
+<!-- <text>获取用户地理位置信息</text>
+<text class="block">latitude:{{latitude}}</text>
+<text class='block'>longitude:{{longitude}}</text> -->
+<!-- <modal name="reAuthorizePop" hidden="{{hiddenReAuthorizePop}}" content="{{content}}" type="slot">
+  <view class="btn">
+    <button type="mini" plain="true" type="primary" bindtap='openLocationSetting'>请重新授权</button>
+  </view>
+</modal>
+
+
+<view class="location_detail">
+  你当前的具体位置是：{{location}}</view> -->
+  <!-- 头像和昵称 -->
+<view class='UCenter-bg' style="background-image:url('http://m.qpic.cn/psb?/V13HF86115bDyo/tM9jZLAFOgahwS1oynSi14cmgWcbJDW42scBLj8OxHA!/b/dL4AAAAAAAAA&bo=EwGQAAAAAAARF6I!&rf=viewer_4')">
+  <view class="cu-avatar round xl margin-left" style="background-image:url({{userInfo.avatarUrl}});">
+    <view class="cu-tag badge {{(userInfo.gender==0)?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+  </view>
+  <!-- <image src='{{userInfo.avatarUrl}}' class='png' mode='widthFix'></image> -->
+  <view class='margin-top-sm'>
+    <text>{{userInfo.nickName}}</text>
+  </view>
+  <image src='/image/wave.gif' mode='scaleToFill' class='gif-wave'></image>
+</view>
+
+<!-- 三个子模块 -->
+<view class='padding flex text-center text-grey bg-white shadow-warp'>
+  <view class='flex flex-sub flex-direction solid-right'>
+    <view class="text-xxl text-orange">{{visitTotal}}</view>
+    <view class="margin-top-sm">
+      <text class='icon-recharge'></text> 积分</view>
+  </view>
+  <view class='flex flex-sub flex-direction solid-right'>
+    <view class="text-xxl text-blue">{{starCount}}</view>
+    <view class="margin-top-sm">
+      <text class='icon-moneybag'></text> 收益</view>
+  </view>
+  <view class='flex flex-sub flex-direction'>
+    <view class="text-xxl text-green">{{forksCount}}</view>
+    <view class="margin-top-sm">
+      <text class='icon-sponsor'></text> 保证金</view>
+  </view>
+</view>
+
+<!-- 菜单栏 -->
+<!-- 在这里面之后进行页面的跳转 -->
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+  <view class="cu-item arrow">
+    <navigator class='content' open-type="navigate" hover-class='none' url="/pages/order/index/index">
+      <text class='cuIcon-send text-cyan'></text>
+      <text class='text-grey'>我的订单</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' open-type="navigate" hover-class='none' url="/pages/vipcard/index/index">
+      <text class='cuIcon-vipcard text-green'></text>
+      <text class='text-grey'>会员卡</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' open-type="navigate" hover-class='none' url="/pages/coupon/index/index">
+      <text class='cuIcon-ticket text-red'></text>
+      <text class='text-grey'>优惠券</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/address/index">
+      <text class='cuIcon-location text-orange'></text>
+      <text class='text-grey'>地址管理</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <button class='cu-btn content' open-type='feedback'>
+      <text class='cuIcon-writefill text-grey'></text>
+      <text class='text-grey'>意见反馈</text>
+    </button>
+  </view>
+  
+</view>

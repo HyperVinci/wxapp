@@ -1,139 +1,179 @@
 // page/component/index/index.js
-//引入SDK核心类
-var QQMapWX = require('../../../qqmap-wx-jssdk1.2/qqmap-wx-jssdk.js')
-//实例化API核心类
-const wxMap = new QQMapWX({
-  key: 'QMJBZ-HI3CO-FUVWI-SO3Q7-3LAT7-N4BLG'
-});//这里需要去腾讯地图开发平台注册账号获取key填入这里，同时需要配置request合法域名
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {}, //用户信息对象
-    hasUserInfo: false, //是否已经存储了用户的信息
-    hiddenReAuthorizePop: true, //隐藏重新授权确认弹窗
-    latitude: "", //维度，浮点数
-    longitude: "", //经度，浮点数
-    content: "本活动需要获取位置才可以参加"
+    TabCur: 0,
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    // scrollLeft: 0,
+    swiperList: [{
+      id: 0,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+    }, {
+      id: 1,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+    }, {
+      id: 2,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+    }, {
+      id: 3,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
+    }, {
+      id: 4,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
+    }, {
+      id: 5,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
+    }, {
+      id: 6,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
+    }],
+    notice: "文麟-助力少数民族艺术文化走进现代生活-公益创业项目",
+    Headlines: [{
+      id: 1,
+      title: "文麟项目简介",
+      type: 1
+    }, {
+      id: 2,
+      title: "团队成员简介",
+      type: 2
+    }, {
+      id: 3,
+      title: "测试标题3",
+      type: 3
+    }, {
+      id: 4,
+      title: "测试标题4",
+      type: 4
+    }],
+    iconList: [{
+      id: 1,
+      icon: 'questionfill',
+      color: 'red',
+      name: '好处',
+      type: 1
+    }, {
+      id: 2,
+      icon: 'group_fill',
+      color: 'orange',
+      name: '加入',
+      type: 2
+    }, {
+      id: 3,
+      icon: 'shopfill',
+      color: 'yellow',
+      name: '经营',
+      type: 1
+    }, {
+      id: 4,
+      icon: 'discoverfill',
+      color: 'olive',
+      name: '收益',
+      type: 1
+    }],
   },
-  //获取到用户信息并保存到data中
-  onGotUserInfo: function(e) {
-    var that = this;
-    //需要点击登录按钮才会触发
+  //设置轮播的时候记录当前的swiper-item
+  lineschange:function(e)
+  {
+  this.setData({
+    lines:e.detail.current
+  })
+  },
+  //每一个公告的点击
+  linesclick:function(e)
+  {
+const that = this;
+    // console.log(that.data.lines)
+    var HeadlineItem = that.data.Headlines[that.data.lines];
+    // console.log(HeadlineItem);
+    // console.log(HeadlineItem.type);
+    if (HeadlineItem.type ===1)
+{
+  //后续的跳转使用
+// wx.navigateTo({
+//   url: '/pages/home/doc/index?id=' + HeadlineItem.id,
+// })
+} 
+  },
+  itemckcred:function(e)
+  {
+var  that = this;
+console.log(e);
+var item  =e.currentTarget.dataset;
+//以下为页面的跳转
+    if (item.itemtype === 1) {
+      wx.navigateTo({
+        url: '/pages/home/doc/index?id=' + item.index
+      });
+    }
+    if (item.itemtype === 2) {
+      wx.navigateTo({
+        url: '/pages/home/joinus/index?id=' + item.index
+      });
+    }
+    if (item.itemtype === 3) {
+      wx.navigateTo({
+        url: '/pages/home/manage/index?id=' + item.index
+      });
+    }
+    if (item.itemtype === 4) {
+      wx.navigateTo({
+        url: '/pages/home/profit/index?id=' + item.index
+      });
+    }
+  },
+  
+  //tab被选择中的事件
+  tabSelect(e) {
     console.log(e)
-
-    that.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      // scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
-    console.log("data", that.data); //这里会在页面加载完成之后才会执行函数，后续可能要增加回调函数或者写入本地缓存，下次用户无需要写按钮
+  },
+  // cardSwiper
+  cardSwiper(e) {
+    // console.log(e)
+    this.setData({
+      cardCur: e.detail.current
+    })
+  },
+  //跳转到商品列表
+  toList: function() {
+    wx.navigateTo({
+      url: '/page/component/list/list',
+      success: function(res) {
+        console.log('商品列表跳转成功')
+      },
+      fail: function(res) {
+        console.log('商品列表跳转失败')
+      },
+      complete: function(res) {
+        console.log('商品列表跳转完成')
+      },
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
+  onLaunch: function(options) {
+    //在这里面进行用户的登录验证
+
+  },
   onLoad: function(options) {
-    var that = this;
-    //调用getUserMes云函数
-
-
-    var that = this;
-    that.getLocation(); //调用获取用户的地理位置
-    //当组件不存在时，提示用户更新微信版本
-    if (!wx.canIUse('button.open-type.getUserInfo')) {
-      wx.showModal({
-        title: '提示',
-        content: '当前微信版本过低，请升级到最新版微信版本后重试',
-      })
-    }
-  },
-//获取用户经纬度的函数
-  getLocation: function() {
-    var self = this;
-    wx.getLocation({
-      type: "wgs84", // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的坐标，可传入'gcj02'
-      altitude: true, //传入 true 会返回高度信息，由于获取高度需要较高精确度，会减慢接口返回速度
-      success: function(res) {
-        var latitude = res.latitude; // 纬度，浮点数
-        var longitude = res.longitude; // 经度，浮点数
-        self.setData({
-          latitude: latitude,
-          longitude: longitude
-        });
-        //调用腾讯地图api传入经纬度获取详细的市政街道地址
-        wxMap.reverseGeocoder({
-          location: {
-            latitude: latitude,
-            longitude: longitude
-          },
-          success: function(res) {
-            console.log(res);
-            self.setData({
-              location: res.result.address
-            })
-          },
-          fail: function(res) {
-            console.log(res);
-          }
-        })
-      },
-      fail: function(res) {
-        //未授权就弹出弹窗提示用户重新授权
-        self.reAuthorize();
-      }
-    });
-  },
-  /**
-   * 1.2 重新授权按钮点击事件
-   * click event   
-   */
-  openLocationSetting: function() {
-    var self = this;
-    //先获取用户的当前设置，返回值中只会出现小程序已经向用户请求过的权限
-    wx.getSetting({
-      success: function(res) {
-        if (res.authSetting && !res.authSetting["scope.userLocation"]) {
-          //未授权则打开授权设置界面
-          wx.openSetting({
-            success: function(res) {
-              if (res.authSetting && res.authSetting["scope.userLocation"]) {
-                self.getLocation();
-                self.setData({
-                  hiddenReAuthorizePop: true
-                })
-                wx.showToast({
-                  title: '你已经授权位置信息',
-                  icon: 'none'
-                })
-              } else {
-                //未授权就弹出弹窗提示用户重新授权 
-                self.reAuthorize();
-              }
-            }
-          })
-        } else {
-          //授权则重新获取位置新（授权设置界面返回首页，首页授权二确弹窗未关闭）
-          self.getLocation();
-        }
-      }
-    });
-  },
-  reAuthorize: function() {
-    var self = this;
-    self.setData({
-      hiddenReAuthorizePop: false
-    })
-  },
-
-  //跳转到商品列表
-  toList: function () {
-    wx.navigateTo({
-      url: '/page/component/list/list',
-      success: function (res) { console.log('商品列表跳转成功') },
-      fail: function (res) { console.log('商品列表跳转失败') },
-      complete: function (res) { console.log('商品列表跳转完成') },
-    })
+    console.log(app.globalData.CustomBar);
+    console.log(app.globalData.StatusBar);
   },
 
   /**
