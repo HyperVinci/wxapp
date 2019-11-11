@@ -1,3 +1,4 @@
+
 {
   "pages": [
     "page/component/index/index",
@@ -5,16 +6,17 @@
     "page/component/share/share",
     "page/component/user/user",
     "page/component/address/address",
-    "page/component/list/list"
+    "page/component/list/list",
+    "page/component/cart/cart",
+    "page/component/desc/desc"
   ],
   "window": {
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#217EE6",
+    "navigationBarBackgroundColor": "#AB956D",
     "navigationBarTitleText": "HyperVinci",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true,
-    "navigationStyle":"custom"
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#b7b7b7",
