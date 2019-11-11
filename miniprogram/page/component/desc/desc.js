@@ -1,6 +1,7 @@
 // pages/detail/detail.js
 // const ajax = require('../../utils/ajax.js');
 // const utils = require('../../utils/util.js');
+const app = getApp();
 
 
 var imgUrls = [];
@@ -13,6 +14,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    StatusBar : app.globalData.StatusBar,
+    CustomBar : app.globalData.CustomBar,
     isLike: false,
     showDialog: false,
     goods: null,
@@ -22,7 +25,7 @@ Page({
     duration: 1000, //  滑动动画时长1s
   },
   //预览图片
-  previewImage: function (e) {
+  previewImage: function(e) {
     var current = e.target.dataset.src;
     wx.previewImage({
       current: current, // 当前显示图片的http链接  
@@ -65,7 +68,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     item_desc_id = options.item_desc_id;
     console.log('item_desc_id:' + item_desc_id);
@@ -89,46 +92,46 @@ Page({
   //     }
   //   })
   // },
-  goodsInfoShow: function (success) {
+  goodsInfoShow: function(success) {
     var that = this;
     wx.cloud.callFunction({
-      name:"getItemDescById",
-      data:{
+      name: "getItemDescById",
+      data: {
         item_desc_id: item_desc_id
       }
-    }).then(data=>{
-        var goodsItem = data.result.data;
-        // for (var i = 0; i < goodsItem.shopGoodsImageList.length; i++) {
-        //   imgUrls[i] = goodsItem.shopGoodsImageList[i].imgUrl;
-        // }
-        // var details = goodsItem.details.split(";");
-        // for (var j = 0; j < details.length; j++) {
-        //   detailImg[j] = details[j];
-        // }
-        goods = {
-          name: goodsItem.name,
-          price: goodsItem.price,
-          count: 1,
-          itemMoney: goodsItem.price,
-          image_url: goodsItem.image_url,
-          item_desc_id: item_desc_id,
-          desc: goodsItem.desc
-          // imgUrls: imgUrls,
-          // title: goodsItem.name,
-          // price: goodsItem.price,
-          // privilegePrice: goodsItem.privilegePrice,
-          // detailImg: detailImg,
-          // imgUrl: goodsItem.imgUrl,
-          // buyRate: goodsItem.buyRate,
-          // goodsId: goodsId,
-          // count: 1,
-          // totalMoney: goodsItem.price,
-        }
+    }).then(data => {
+      var goodsItem = data.result.data;
+      // for (var i = 0; i < goodsItem.shopGoodsImageList.length; i++) {
+      //   imgUrls[i] = goodsItem.shopGoodsImageList[i].imgUrl;
+      // }
+      // var details = goodsItem.details.split(";");
+      // for (var j = 0; j < details.length; j++) {
+      //   detailImg[j] = details[j];
+      // }
+      goods = {
+        name: goodsItem.name,
+        price: goodsItem.price,
+        count: 1,
+        itemMoney: goodsItem.price,
+        image_url: goodsItem.image_url,
+        item_desc_id: item_desc_id,
+        desc: goodsItem.desc
+        // imgUrls: imgUrls,
+        // title: goodsItem.name,
+        // price: goodsItem.price,
+        // privilegePrice: goodsItem.privilegePrice,
+        // detailImg: detailImg,
+        // imgUrl: goodsItem.imgUrl,
+        // buyRate: goodsItem.buyRate,
+        // goodsId: goodsId,
+        // count: 1,
+        // totalMoney: goodsItem.price,
+      }
 
-        that.setData({
-          goods: goods
-        })
-        console.log(goods.name)
+      that.setData({
+        goods: goods
+      })
+      console.log(goods.name)
 
     })
 
@@ -136,53 +139,51 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
   /**
    * sku 弹出
    */
-  toggleDialog: function () {
+  toggleDialog: function() {
     this.setData({
       showDialog: !this.data.showDialog
     });
@@ -190,14 +191,14 @@ Page({
   /**
    * sku 关闭
    */
-  closeDialog: function () {
+  closeDialog: function() {
     console.info("关闭");
     this.setData({
       showDialog: false
     });
   },
   /* 减数 */
-  delCount: function (e) {
+  delCount: function(e) {
     console.log("刚刚您点击了减1");
     var count = this.data.goods.count;
     // 商品总数量-1
@@ -211,7 +212,7 @@ Page({
     this.priceCount();
   },
   /* 加数 */
-  addCount: function (e) {
+  addCount: function(e) {
     console.log("刚刚您点击了加1");
     var count = this.data.goods.count;
     // 商品总数量-1  
@@ -225,7 +226,7 @@ Page({
     this.priceCount();
   },
   //价格计算
-  priceCount: function (e) {
+  priceCount: function(e) {
     this.data.goods.itemMoney = this.data.goods.price * this.data.goods.count;
     this.setData({
       goods: this.data.goods
@@ -234,7 +235,7 @@ Page({
   /**
    * 加入购物车
    */
-  addCar: function (e) {
+  addCar: function(e) {
     var goods = this.data.goods;
     goods.isSelect = false;
     var count = this.data.goods.count;

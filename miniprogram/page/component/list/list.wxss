@@ -164,6 +164,7 @@ swiper-item image {
 }
 .welfares-image{
   width: 100%;
+  height: 380rpx;
   display: inline-block;
   border: 1px #eee solid; 
 }

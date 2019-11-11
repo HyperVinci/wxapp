@@ -1,7 +1,8 @@
 // pages/home/home.js
 
 var sectionData = [];
-var ifLoadMore = null;
+sectionData['newGoods'] = [];
+var ifLoadMore = true;
 var page = 1; //默认第一页
 Page({
 
@@ -19,7 +20,50 @@ Page({
     menus: null,
     brands: null,
     hidden: false,
-
+    menus: [
+      {
+        "id": 1,
+        "menuName": "自营",
+        "imgUrl": "https://m.360buyimg.com/mobilecms/jfs/t7930/307/1143783545/25656/a167df62/599aa7feN91f03e0b.png",
+        "clickUrl": null,
+        "seq": 1
+      }, {
+        "id": 2,
+        "menuName": "新人专享",
+        "imgUrl": "https://m.360buyimg.com/babel/s132x132_jfs/t10762/151/321904602/14728/4c836625/59cc69f9Na24dd977.png",
+        "clickUrl": null,
+        "seq": 2
+      }, {
+        "id": 3,
+        "menuName": "全球购",
+        "imgUrl": "https://m.360buyimg.com/mobilecms/jfs/t5965/339/3633548361/13799/cd4d0416/5954cf81N3294a71c.png",
+        "clickUrl": null,
+        "seq": 3
+      }, {
+        "id": 4,
+        "menuName": "物流查询",
+        "imgUrl": "https://m.360buyimg.com/mobilecms/jfs/t5842/205/151189300/13247/a6de2d/591d94edNc42fb94d.png",
+        "clickUrl": null,
+        "seq": 4
+      }, {
+        "id": 5,
+        "menuName": "领券",
+        "imgUrl": "https://m.360buyimg.com/mobilecms/jfs/t5872/340/146804759/11154/f4ae1409/591d94c4N79a488cc.png",
+        "clickUrl": null,
+        "seq": 5
+      }, {
+        "id": 6,
+        "menuName": "拼团",
+        "imgUrl": "https://m.360buyimg.com/mobilecms/jfs/t17509/324/1413437865/15080/f7029302/5ac98982Nf9710996.png",
+        "clickUrl": null,
+        "seq": 6
+      }, {
+        "id": 7,
+        "menuName": "家居",
+        "imgUrl": "https://m.360buyimg.com/mobilecms/jfs/t5656/351/153181074/12227/e35aa8d/591d9456Naa85e195.png",
+        "clickUrl": null,
+        "seq": 7
+      }]
   },
   // 导航切换监听
   navbarTap: function(e) {
@@ -119,6 +163,9 @@ Page({
     var that = this;
     wx.cloud.callFunction({
       name: "getItems",
+      data: {
+        index: (page - 1) * 10
+      },
       success: data => {
         var newGoodsData = data.result.data
         page += 1;
@@ -137,7 +184,7 @@ Page({
             sectionData['newGoods'] = sectionData['newGoods'].concat(newGoodsData);
 
           } else {
-            ifLoadMore = false;banners
+            ifLoadMore = false;
             this.setData({
               hidden: true
             })
@@ -146,21 +193,6 @@ Page({
               icon: 'loading',
               duration: 2000
             })
-          }
-
-        } else {
-          if (ifLoadMore == null) {
-            ifLoadMore = true;
-
-            //日期以及title长度处理
-            for (var i in newGoodsData) {
-              //商品名称长度处理
-              var name = newGoodsData[i].name;
-              if (name.length > 26) {
-                newGoodsData[i].name = name.substring(0, 23) + '...';
-              }
-            }
-            sectionData['newGoods'] = newGoodsData; //刷新
           }
 
         }
