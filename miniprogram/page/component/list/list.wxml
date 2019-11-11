@@ -13,7 +13,7 @@
   </block>
 </swiper>
 <!-- 分类导航 -->
-<!-- <view>
+<view>
   <view class="navs">
     <block wx:for-items="{{menus}}" wx:key="name">
       <view class="nav-item" data-type="{{item.menuName}}" data-typeid="{{item.id}}">
@@ -22,7 +22,7 @@
       </view>
     </block>
   </view>
-</view> -->
+</view>
 
 <!-- <view class="separate"></view>
 <view class="cate-container">
@@ -55,7 +55,7 @@
       <block wx:for-items="{{newGoods}}" wx:key="id">
         <view class="welfares-good" catchtap="catchTapCategory" data-name="{{item.name}}" data-goodsid="{{item.item_desc_id}}">
           <view>
-            <image src="{{item.image_url}}" class="welfares-image" mode="widthFix" />
+            <image src="{{item.image_url}}" class="welfares-image" mode="scaleToFill" />
           </view>
           <view class="product-name">
             {{item.name}}

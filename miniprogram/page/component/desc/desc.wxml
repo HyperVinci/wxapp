@@ -1,6 +1,11 @@
 <!--pages/detail/detail.wxml-->
 <!-- banner -->
 <import src="../template/template.wxml" />
+<!-- <view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class="head-title canui-head-title">文麒</view>
+  </view>
+</view> -->
 
 <!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{goods.image_url}}">
@@ -69,4 +74,3 @@
     <button data-goodid="{{goods.item_desc_id}}" class="button-addCar" bindtap="addCar" formType="submit">确定</button>
   </view>
 </view>
-
