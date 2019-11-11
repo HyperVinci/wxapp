@@ -16,8 +16,7 @@
     "navigationBarBackgroundColor": "#33a3dc",
     "navigationBarTitleText": "文麒",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true,
-    "navigationStyle": "custom"
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#b7b7b7",
