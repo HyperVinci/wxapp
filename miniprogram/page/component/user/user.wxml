@@ -4,8 +4,10 @@
 <!-- <open-data type="userNickName" lang="zh_CN" class = "head_name_txt"></open-data> -->
 
 <!-- 通过button获取到用户头像和昵称，并关联getUserInfo保存数据到data中 -->
-<!-- <button class="head_name head_name_btn" wx:if="{{!(userInfo && hasUserInfo)}}" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">登录</button>
-<block wx:else>
+
+
+
+<!-- <block wx:else>
   <view class="padding">
     <view class="cu-avatar round lg margin-left" style="background-image:url({{userInfo.avatarUrl}});">
       <view class="cu-tag badge {{(userInfo.gender==0)?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
@@ -14,7 +16,7 @@
     {{userInfo.nickName}}
     </text>
   </view>
-</block>
+</block> -->
 
 
 
@@ -41,6 +43,9 @@
   </view>
   <image src='/image/wave.gif' mode='scaleToFill' class='gif-wave'></image>
 </view>
+
+<button class="head_name head_name_btn cu-btn block line-blue lg" wx:if="{{!(userInfo && hasUserInfo)}}" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+<text class="cuIcon-loading2 lg text-blues"></text> 登录</button>
 
 <!-- 三个子模块 -->
 <view class='padding flex text-center text-grey bg-white shadow-warp'>

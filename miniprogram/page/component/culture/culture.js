@@ -140,28 +140,26 @@ Page({
     })
   },
   //滑动scroll-view的时候触发的事件
-  VerticalMain:function(e)
-  {
-let that = this;
-let list  = that.data.list;
-let tabHeight  =0;
-if(that.data.load)
-{
-  for (let i = 0; i < list.length; i++) {
-    let view = wx.createSelectorQuery().select("#main-" + list[i].id);
-    view.fields({
-      size: true
-    }, data => {
-      list[i].top = tabHeight;
-      tabHeight = tabHeight + data.height;
-      list[i].bottom = tabHeight;
-    }).exec();
-  }
-  that.setData({
-    load: false,
-    list: list
-  })  
-}
+  VerticalMain(e) {
+    let that = this;
+    let list = this.data.list;
+    let tabHeight = 0;
+    if (this.data.load) {
+      for (let i = 0; i < list.length; i++) {
+        let view = wx.createSelectorQuery().select("#main-" + list[i].id);
+        view.fields({
+          size: true
+        }, data => {
+          list[i].top = tabHeight;
+          tabHeight = tabHeight + data.height;
+          list[i].bottom = tabHeight;
+        }).exec();
+      }
+      that.setData({
+        load: false,
+        list: list
+      })
+    }
     let scrollTop = e.detail.scrollTop + 20;
     for (let i = 0; i < list.length; i++) {
       if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
@@ -172,7 +170,6 @@ if(that.data.load)
         return false
       }
     }
-
   },
   //获取用户经纬度的函数
   getLocation: function () {

@@ -13,32 +13,20 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+      url: 'https://hbimg.huabanimg.com/033a66af25c089ae1508003a98d41610dabae5eb912e-tzYpJ5_fw658'
     }, {
       id: 1,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+        url: 'https://hbimg.huabanimg.com/3cd837a0052bcc1984ea791ef6f42c96ffba7dc56b57a-ED9esx_fw658',
     }, {
       id: 2,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+        url: 'https://hbimg.huabanimg.com/11414d1edfc0286dc49398b983897fa6460cd40a90fa6-o4UHIM_fw658'
     }, {
       id: 3,
       type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-    }, {
-      id: 5,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-    }, {
-      id: 6,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-    }],
+        url: 'https://hbimg.huabanimg.com/6604fbb1ba76fa5f6cc94aa0366c6b30435facad18e5e-SNpPxE_fw658'
+    }, ],
     notice: "文麟-助力少数民族艺术文化走进现代生活-公益创业项目",
     Headlines: [{
       id: 1,
@@ -50,18 +38,18 @@ Page({
       type: 2
     }, {
       id: 3,
-      title: "测试标题3",
+      title: "文创产品分类",
       type: 3
     }, {
       id: 4,
-      title: "测试标题4",
+      title: "民族传统科普",
       type: 4
     }],
     iconList: [{
       id: 1,
       icon: 'questionfill',
       color: 'red',
-      name: '好处',
+      name: '好奇',
       type: 1
     }, {
       id: 2,
@@ -79,7 +67,7 @@ Page({
       id: 4,
       icon: 'discoverfill',
       color: 'olive',
-      name: '收益',
+      name: '公益',
       type: 1
     }],
   },
@@ -172,8 +160,8 @@ var item  =e.currentTarget.dataset;
 
   },
   onLoad: function(options) {
-    console.log(app.globalData.CustomBar);
-    console.log(app.globalData.StatusBar);
+    // console.log(app.globalData.CustomBar);
+    // console.log(app.globalData.StatusBar);
   },
 
   /**

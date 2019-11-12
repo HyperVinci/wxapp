@@ -19,7 +19,10 @@
 {
   margin-left: 10rpx;
 }
-
+/* .head_name
+{
+  padding-top: 40rpx;
+} */
 .UCenter-bg {
     background-size: cover;
     height: 550rpx;
