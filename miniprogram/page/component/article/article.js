@@ -14,6 +14,9 @@ Page({
    */
   onLoad: function(options) {
     const that = this;
+    wx.showLoading({
+      title: '正在加载中',
+    })
     wx.cloud.callFunction({
       name: "getArticleDescById",
       data: {
@@ -27,6 +30,7 @@ Page({
       })
       WxParse.wxParse('article', 'html', this.data.html, that);
     })
+
     
   },
 
@@ -34,7 +38,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+wx.hideLoading();
   },
 
   /**

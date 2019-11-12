@@ -141,8 +141,12 @@ var item  =e.currentTarget.dataset;
   toArticle: function(){
     wx.navigateTo({
       url: '../article/article',
-      success: function(res) {console.log("跳转文章详情页面成功")},
-      fail: function (res) { console.log("跳转文章详情页面失败")},
+      success: function(res) {
+        console.log("跳转文章详情页面成功")
+        },
+      fail: function (res) { 
+        console.log("跳转文章详情页面失败")
+        },
       complete: function(res) {},
     })
   },
