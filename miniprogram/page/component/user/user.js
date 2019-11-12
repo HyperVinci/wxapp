@@ -4,7 +4,7 @@ var QQMapWX = require('../../../qqmap-wx-jssdk1.2/qqmap-wx-jssdk.js')
 //实例化API核心类
 const wxMap = new QQMapWX({
   key: 'QMJBZ-HI3CO-FUVWI-SO3Q7-3LAT7-N4BLG'
-});//这里需要去腾讯地图开发平台注册账号获取key填入这里，同时需要配置request合法域名
+}); //这里需要去腾讯地图开发平台注册账号获取key填入这里，同时需要配置request合法域名
 Page({
 
   /**
@@ -22,11 +22,11 @@ Page({
     visitTotal: 0,
   },
   //获取到用户信息并保存到data中
-  onGotUserInfo: function (e) {
+  onGotUserInfo: function(e) {
     var that = this;
     //需要点击登录按钮才会触发
     // console.log(e)
-   
+
     that.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
@@ -39,14 +39,14 @@ Page({
       key: 'hasUserInfo',
       data: that.data.hasUserInfo,
     })
-    
+
     console.log("data", that.data); //这里会在页面加载完成之后才会执行函数，后续可能要增加回调函数或者写入本地缓存，下次用户无需要写按钮
   },
   /**
    * 生命周期函数--监听页面加载
    */
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     //一种友好提示用户，正在加载中
     wx.showLoading({
@@ -55,9 +55,10 @@ Page({
     })
     let i = 0;
     numDH();
+
     function numDH() {
       if (i < 20) {
-        setTimeout(function () {
+        setTimeout(function() {
           that.setData({
             visitTotal: i,
             forksCount: i,
@@ -74,30 +75,26 @@ Page({
         })
       }
     }
- 
-    wx.getStorage(
-{
-key:'userInfo',
-success:function(res)
-{
- const  userIn  =JSON.parse(res.data);
-  that.setData({
-    userInfo:userIn
-  })
-}
-        }
-      );
-     wx.getStorage({
-        key: 'hasUserInfo',
-        success:function(res)
-        {
-          console.log(res)
-          that.setData({
-            hasUserInfo: res.data
-          })
-        }
-      });      
-    
+
+    wx.getStorage({
+      key: 'userInfo',
+      success: function(res) {
+        const userIn = JSON.parse(res.data);
+        that.setData({
+          userInfo: userIn
+        })
+      }
+    });
+    wx.getStorage({
+      key: 'hasUserInfo',
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          hasUserInfo: res.data
+        })
+      }
+    });
+
     //调用getUserMes云函数
     console.log("data", that.data);
 
@@ -112,12 +109,12 @@ success:function(res)
     }
   },
   //获取用户经纬度的函数
-  getLocation: function () {
+  getLocation: function() {
     var self = this;
     wx.getLocation({
       type: "wgs84", // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的坐标，可传入'gcj02'
       altitude: true, //传入 true 会返回高度信息，由于获取高度需要较高精确度，会减慢接口返回速度
-      success: function (res) {
+      success: function(res) {
         var latitude = res.latitude; // 纬度，浮点数
         var longitude = res.longitude; // 经度，浮点数
         self.setData({
@@ -130,19 +127,19 @@ success:function(res)
             latitude: latitude,
             longitude: longitude
           },
-          success: function (res) {
+          success: function(res) {
             // console.log(res);
             self.setData({
               location: res.result.address
             })
-            
+
           },
-          fail: function (res) {
+          fail: function(res) {
             console.log(res);
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         //未授权就弹出弹窗提示用户重新授权
         self.reAuthorize();
       }
@@ -152,15 +149,15 @@ success:function(res)
    * 1.2 重新授权按钮点击事件
    * click event   
    */
-  openLocationSetting: function () {
+  openLocationSetting: function() {
     var self = this;
     //先获取用户的当前设置，返回值中只会出现小程序已经向用户请求过的权限
     wx.getSetting({
-      success: function (res) {
+      success: function(res) {
         if (res.authSetting && !res.authSetting["scope.userLocation"]) {
           //未授权则打开授权设置界面
           wx.openSetting({
-            success: function (res) {
+            success: function(res) {
               if (res.authSetting && res.authSetting["scope.userLocation"]) {
                 self.getLocation();
                 self.setData({
@@ -183,14 +180,14 @@ success:function(res)
       }
     });
   },
-  reAuthorize: function () {
+  reAuthorize: function() {
     var self = this;
     self.setData({
       hiddenReAuthorizePop: false
     })
   },
 
-//随机计算用户的积分，收益，保证金，后期应该改为动态从数据库中获取
+  //随机计算用户的积分，收益，保证金，后期应该改为动态从数据库中获取
   coutNum(e) {
     if (e > 1000 && e < 10000) {
       e = (e / 1000).toFixed(1) + 'k'
@@ -219,50 +216,50 @@ success:function(res)
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    wx.hideLoading();//隐藏
+  onReady: function() {
+    wx.hideLoading(); //隐藏
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-   
-    
+  onShow: function() {
+
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

@@ -26,7 +26,7 @@
       <p class="product-price-old">原价￥{{goods.privilegePrice}}</p>
     </view>
   </view>
-  <view class="text-df">{{goods.desc}}</view>
+  <view class="product-desc">{{goods.desc}}</view>
 </view>
 
 <!-- <view class="details">

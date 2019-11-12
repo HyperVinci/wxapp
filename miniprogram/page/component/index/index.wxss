@@ -4,6 +4,7 @@ page {
 }
 .head-title{
     margin: 0 auto;
+    
 }
 .cu-custom .cu-bar{
     padding-right:inherit;

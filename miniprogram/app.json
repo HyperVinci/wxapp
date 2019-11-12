@@ -1,16 +1,16 @@
-
 {
   "pages": [
-  "page/component/culture/culture",
     "page/component/index/index",
+    "page/component/culture/culture",
+    
     "page/component/clockin/clockin",
     "page/component/share/share",
-    
     "page/component/user/user",
     "page/component/address/address",
     "page/component/list/list",
     "page/component/cart/cart",
-    "page/component/desc/desc"
+    "page/component/desc/desc",
+    "page/component/article/article"
   ],
   "window": {
     "backgroundColor": "#eeeeee",
@@ -59,7 +59,7 @@
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
-  "usingComponents":{
-    "cu-custom":"/colorui/components/cu-custom"
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
   }
 }

@@ -1,6 +1,10 @@
 /* pages/detail/detail.wxss */
  @import "../template/template.wxss"; 
 
+image{
+  width:100%;
+}
+
 page {
   display: flex;
   flex-direction: column;
@@ -21,7 +25,7 @@ swiper-item image {
   justify-content:space-between;/**两边对齐**/
   flex-direction: row;
   flex-wrap: wrap;
-  margin:5px 5px;
+  margin:10rpx 10rpx;
    /* border:1rpx solid red;   */
 }
  .product-price-wrap .product-price-new{
@@ -32,22 +36,26 @@ swiper-item image {
 .product-price-wrap .product-price-old{
   color: #888;
   text-decoration: line-through;
-  padding-left: 5px;
-  font-size: 12px;
-  line-height:30px;
+  padding-left: 10rpx;
+  font-size: 24rpx;
+  line-height:60rpx;
   font-weight:300;
 }
 .product-name-wrap{
-  margin: 0px 10px;
-    font-size: 14px;
+    margin: 0rpx 20rpx;
+    font-size: 32rpx;
     color: #404040;
+    font-weight: bold;
+}
+
+.product-desc{
+  margin: 30rpx 10rpx;
+  font-size: 26rpx;
 }
 
 
-
-
 .details{
-   padding: 0 5px 0 5px; 
+   padding: 0 10rpx 0 10rpx; 
 }
 .detail {
   display: flex;
@@ -172,8 +180,8 @@ button {
   height: 200rpx;
   z-index: 12;
   position: absolute;
-  left: 20px;
-  top: -30px;
+  left: 40rpx;
+  top: -60rpx;
   border-radius: 20rpx;
 }
 .image-close {

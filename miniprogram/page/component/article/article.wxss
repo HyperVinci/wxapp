@@ -1,0 +1,11 @@
+/* miniprogram/page/article/article.wxss */
+@import "../../../wxParse/wxParse.wxss";
+
+page {
+  background-color: #fff;
+}
+
+.wxParse-html {
+  margin: 0 15rpx;
+}
+

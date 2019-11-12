@@ -137,21 +137,30 @@ var item  =e.currentTarget.dataset;
       cardCur: e.detail.current
     })
   },
-  //跳转到商品列表
-  toList: function() {
+  //跳转到文章详情页面
+  toArticle: function(){
     wx.navigateTo({
-      url: '/page/component/list/list',
-      success: function(res) {
-        console.log('商品列表跳转成功')
-      },
-      fail: function(res) {
-        console.log('商品列表跳转失败')
-      },
-      complete: function(res) {
-        console.log('商品列表跳转完成')
-      },
+      url: '../article/article',
+      success: function(res) {console.log("跳转文章详情页面成功")},
+      fail: function (res) { console.log("跳转文章详情页面失败")},
+      complete: function(res) {},
     })
   },
+  //跳转到商品列表
+  // toList: function() {
+  //   wx.navigateTo({
+  //     url: '/page/component/list/list',
+  //     success: function(res) {
+  //       console.log('商品列表跳转成功')
+  //     },
+  //     fail: function(res) {
+  //       console.log('商品列表跳转失败')
+  //     },
+  //     complete: function(res) {
+  //       console.log('商品列表跳转完成')
+  //     },
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
