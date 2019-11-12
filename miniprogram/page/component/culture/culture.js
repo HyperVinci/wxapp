@@ -147,8 +147,31 @@ let list  = that.data.list;
 let tabHeight  =0;
 if(that.data.load)
 {
-
+  for (let i = 0; i < list.length; i++) {
+    let view = wx.createSelectorQuery().select("#main-" + list[i].id);
+    view.fields({
+      size: true
+    }, data => {
+      list[i].top = tabHeight;
+      tabHeight = tabHeight + data.height;
+      list[i].bottom = tabHeight;
+    }).exec();
+  }
+  that.setData({
+    load: false,
+    list: list
+  })  
 }
+    let scrollTop = e.detail.scrollTop + 20;
+    for (let i = 0; i < list.length; i++) {
+      if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
+        that.setData({
+          VerticalNavTop: (list[i].id - 1) * 50,
+          TabCur: list[i].id
+        })
+        return false
+      }
+    }
 
   },
   //获取用户经纬度的函数
