@@ -88,15 +88,11 @@ Page({
     wx.getStorage({
       key: 'hasUserInfo',
       success: function(res) {
-        console.log(res)
         that.setData({
           hasUserInfo: res.data
         })
       }
     });
-
-    //调用getUserMes云函数
-    console.log("data", that.data);
 
     var that = this;
     that.getLocation(); //调用获取用户的地理位置

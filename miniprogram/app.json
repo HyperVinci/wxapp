@@ -1,16 +1,20 @@
 {
   "pages": [
     "page/component/index/index",
+    "page/component/address/address",
+   "page/component/notice/notice",
     "page/component/culture/culture",
-    
     "page/component/clockin/clockin",
     "page/component/share/share",
     "page/component/user/user",
-    "page/component/address/address",
     "page/component/list/list",
     "page/component/cart/cart",
     "page/component/desc/desc",
-    "page/component/article/article"
+    "page/component/article/article",
+    "page/component/address/add/add",
+    "page/component/auth/auth",
+"page/component/edit/edit"
+   
   ],
   "window": {
     "backgroundColor": "#eeeeee",

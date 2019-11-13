@@ -1,22 +1,19 @@
 //app.js
 App({
-  onLaunch: function () {
-            wx.getSystemInfo({
-            success: e => {
-                this.globalData.StatusBar = e.statusBarHeight;
-            
-                let custom = wx.getMenuButtonBoundingClientRect();
-                this.globalData.Custom = custom;
-                // console.log(custom);
-                let CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-              // console.log(CustomBar)
-                this.globalData.CustomBar = CustomBar;
-                //适配全面屏底部距离
-                if (CustomBar > 75) {
-                    this.globalData.tabbar_bottom = "y"
-                }
-            }
-        })
+  onLaunch: function() {
+    wx.getSystemInfo({
+      success: e => {
+        this.globalData.StatusBar = e.statusBarHeight;
+        let custom = wx.getMenuButtonBoundingClientRect();
+        this.globalData.Custom = custom;
+        let CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+        this.globalData.CustomBar = CustomBar;
+        //适配全面屏底部距离
+        if (CustomBar > 75) {
+          this.globalData.tabbar_bottom = "y"
+        }
+      }
+    })
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -31,11 +28,11 @@ App({
     }
   },
   //设置全局对象
-    globalData: {
-      userInfo: null
-    },
+  globalData: {
+    userInfo: null
+  },
 
-  getURL: function (fileID) {
+  getURL: function(fileID) {
     wx.cloud.downloadFile({
       fileID: fileID,
       success: res => {

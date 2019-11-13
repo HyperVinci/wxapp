@@ -1,2 +1,41 @@
+<!--状态栏导航区域-->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action canui-head-title' open-type="navigateBack" hover-class="none" >
+            <text class='cuIcon-back'></text> 地址管理
+        </navigator>
+    </view>
+</view>
 
-<!-- 地址详情页 -->
+<!-- 显示用户当前的现有地址列表 -->
+<view class="box" style="top: {{CustomBar}}px;">
+
+    <view class="cu-list menu bg-white">
+        <view class="cu-item">
+            <view class='content'>
+                <view class="text-df">收货人 <text>138****8000</text> <view class='cu-tag bg-red round' hidden="{{defaultAdd}}">默认</view></view>
+                <view class='text-gray text-sm canui-xzwz'>重庆市某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某</view>
+            </view>
+            <view class='action' bindtap="editAdd"><view class='text-grey cuIcon-write'></view></view>
+        </view>
+        <view class="cu-item">
+            <view class='content'>
+                <view class="text-df">收货人 <text>138****8000</text></view>
+                <view class='text-gray text-sm canui-xzwz'>重庆市某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某</view>
+            </view>
+            <view class='action'><view class='text-grey cuIcon-write'></view></view>
+        </view>
+        <view class="cu-item">
+            <view class='content'>
+                <view class="text-df">收货人 <text>138****8000</text></view>
+                <view class='text-gray text-sm canui-xzwz'>重庆市某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某</view>
+            </view>
+            <view class='action'><view class='text-grey cuIcon-write'></view></view>
+        </view>
+    </view>
+</view>
+<!-- 用户增加当前的收获地址 -->
+
+<view class="fixedbottom">
+    <button class="cu-btn bg-orange round lg " bindtap='add'><text class="cuIcon-add"></text> 新增收货地址</button>
+</view>

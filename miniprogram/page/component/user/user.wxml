@@ -88,7 +88,7 @@
     </navigator>
   </view>
   <view class="cu-item arrow">
-    <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/address/index">
+    <navigator class='content' open-type="navigate" hover-class='none' url="/page/component/address/address">
       <text class='cuIcon-location text-orange'></text>
       <text class='text-grey'>地址管理</text>
     </navigator>
