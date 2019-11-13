@@ -20,26 +20,18 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    var that  = this;
-    wx.getStorage({
-      key: 'addArr',
-      success: function(res) {
-that.setData({
-  arraylist:res.data
-})
-      },
-    })
+    
   },
   add: function() {
     let that = this;
     wx.showModal({
       title: '提示',
-      content: '是否要新增收货地址？',
+      content: '点击确定绑定微信通讯地址,点击取消手动输入地址',
       success: res => {
         if (res.confirm) {
           that.wxaddress();
         } else if (res.cancel) {
-          wx.redirectTo({
+          wx.navigateTo({
             url: '/page/component/address/add/add',
           });
         }
@@ -49,9 +41,9 @@ that.setData({
   // 编辑用户的地址信息
   editAdd:function(e)
   {
-    console.log(e)
+    // console.log(e)
     var that = this;
-wx.redirectTo({
+wx.navigateTo({
   url: '/page/component/edit/edit?index='+e.currentTarget.dataset.index,
 })
   },
@@ -70,8 +62,12 @@ wx.redirectTo({
       }
     })
   },
-
-  /**
+  returnUser:function()
+{
+  wx.navigateTo({
+    url: '/page/component/user/user',
+  })
+} , /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
@@ -82,7 +78,15 @@ wx.redirectTo({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    wx.getStorage({
+      key: 'addArr',
+      success: function (res) {
+        that.setData({
+          arraylist: res.data
+        })
+      },
+    })
   },
 
   /**

@@ -24,7 +24,7 @@ wx.showLoading({
 wx.getSetting({
   success:res=>{
     if (!res.authSetting['scope.userInfo']) {
-      wx.redirectTo({
+      wx.navigateTo({
         //跳转到授权页面
         url: '/pages/component/auth/auth'
       })
@@ -34,8 +34,8 @@ wx.getSetting({
   },
   // 返回到地址列表展示页面
   returnAddList: function () {
-    wx.redirectTo({
-      url: '/page/component/address/address',
+    wx.navigateBack({
+      
     })
   },
 // 用户改变省市区三级地区时触发的事件,保存到data
@@ -50,7 +50,23 @@ RegionChange:function(e)
   {
     console.log(e)
     var detailMes =  e.detail.value;
+    var len = detailMes.phone.length;
     var that  =this;
+    //正则表达式验证
+    let mobile = /^1\d{10}$/
+    //正则表达式验证,输入格式有误，弹出modal提示
+    if (!(len == 11 && mobile.test(detailMes.phone))) {
+      wx.showModal({
+        title: '提示',
+        content: '你输入的电话号码格式有误，请重新输入',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+          }
+        }
+      })
+      return;
+    }
 let addDesc =  {
   cusName: detailMes.name,
   cusPhone: detailMes.phone,
@@ -71,8 +87,8 @@ let addDesc =  {
         console.log(res);
       }
     })
- wx.redirectTo({
-   url: '/page/component/address/address',
+ wx.navigateBack({
+   
  })
   },
   // switch选择框改变时触发,判断是否为默认地址

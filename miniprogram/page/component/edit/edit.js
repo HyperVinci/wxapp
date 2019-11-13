@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
+    // console.log(options)
     wx.showLoading({
       title: '加载中...',
     });
@@ -93,43 +93,63 @@ Page({
   formSubmit: function(e) {
     var detailMes = e.detail.value;
     var that = this;
-    let addDesc = {
-      cusName: detailMes.name,
-      cusPhone: detailMes.phone,
-      cusAdd: detailMes.descAdd,
-      region: that.data.region,
-      defaultAdd: that.data.defaultAdd
+    var len = detailMes.phone.length;
+    // console.log(detailMes.phone)
+    let mobile = /^1\d{10}$/
+    //正则表达式验证,输入格式有误，弹出modal提示
+    if (!(len == 11 &&mobile.test(detailMes.phone)))
+    {
+      wx.showModal({
+        title: '提示',
+        content: '你输入的电话号码格式有误，请重新输入',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+          }
+        }
+      })
+      return ;
     }
 
-    app.globalData.addArr[that.data.index] = addDesc
-    // console.log(app.globalData.addArr)
-    wx.setStorage({
-      key: 'addArr',
-      data: app.globalData.addArr,
-      success: function(res) {
-        console.log("设置地址本地缓存成功");
+      let addDesc = {
+        cusName: detailMes.name,
+        cusPhone: detailMes.phone,
+        cusAdd: detailMes.descAdd,
+        region: that.data.region,
+        defaultAdd: that.data.defaultAdd
       }
-    })
-    wx.redirectTo({
-      url: '/page/component/address/address',
-    })
+
+      app.globalData.addArr[that.data.index] = addDesc
+      // console.log(app.globalData.addArr)
+      wx.setStorage({
+        key: 'addArr',
+        data: app.globalData.addArr,
+        success: function (res) {
+          console.log("设置地址本地缓存成功");
+        }
+      })
+      wx.navigateBack({
+
+      })
   },
   // 删除该用户的这个地址
   deleteAdd: function(options) {
-    console.log(options);
+    // console.log(options);
     // 查询本地缓存并将其中的数据删除，最后跳转回页面
     app.globalData.addArr.splice(options.currentTarget.dataset.delindex, 1)
     wx.setStorage({
       key: 'addArr',
       data: app.globalData.addArr,
     })
-    wx.redirectTo({
-      url: '/page/component/address/address',
+    // 删除完成之后返回到地址列表框
+    wx.navigateBack({
+      
     })
   },
+  // 返回到地址列表页面
   returnAddList: function() {
-    wx.redirectTo({
-      url: '/page/component/address/address',
+    wx.navigateBack({
+      
     })
   },
 
