@@ -12,33 +12,33 @@
   <form bindsubmit="formSubmit" bindreset="formReset">
     <view class="cu-form-group">
       <view class='title'>姓名</view>
-      <input value="李泽宇" class='radius' name='name'></input>
+      <input value="{{address.cusName}}" class='radius' name='name'></input>
     </view>
 
     <view class="cu-form-group">
       <view class='title'>电话</view>
-      <input value="19927523230" class='radius' name='phone'></input>
+      <input value="{{address.cusPhone}}" class='radius' name='phone'></input>
     </view>
 
     <view class="cu-form-group">
-      <view class='title'>城市</view>
-      <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class='title'>地区</view>
+      <picker mode="region" bindchange="RegionChange" value="{{address.region}}" custom-item="{{customItem}}">
         <view class="picker">
-          {{region[0]}}，{{region[1]}}，{{region[2]}}
+          {{region[0]}}, {{region[1]}}, {{region[2]}}
         </view>
       </picker>
     </view>
 
     <view class="cu-form-group">
       <view class='title'>地址</view>
-      <input value="华南理公大学大学城校区C12" class='radius' name='descAdd'></input>
+      <input value="{{address.cusAdd}}" class='radius' name='descAdd'></input>
     </view>
     <view class="fixedbottom">
       <button class="cu-btn bg-orange round lg " formType="submit">
-        <text class="cuIcon-add"></text> 保存编辑之后的收货地址</button>
+        <text class="cuIcon-add"></text> 保存</button>
     </view>
       <view class="cu-form-group margin-top">
-    <view class='title text-red light' bindtap="deleteAdd" >删除当前收货地址</view>
+    <view class='title text-red light' bindtap="deleteAdd" data-delIndex="{{index}}">删除当前收货地址</view>
   </view>
   </form>
   <view class="cu-form-group">

@@ -9,19 +9,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     TabbarBot: app.globalData.tabbar_bottom,
     hidden: true,
-    arraylist: [{
-      id: 1,
-      name: "名字",
-      phone: "13800138000",
-      address: "重庆市某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某",
-      checked: false
-    }, {
-      id: 2,
-      name: "名字2",
-      phone: "13800138000",
-      address: "重庆市某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某某",
-      checked: true
-    }]
+    arraylist: []
 
   },
 
@@ -32,10 +20,18 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
+    var that  = this;
+    wx.getStorage({
+      key: 'addArr',
+      success: function(res) {
+that.setData({
+  arraylist:res.data
+})
+      },
+    })
   },
   add: function() {
     let that = this;
-    console.log(that.data.TabbarBot)
     wx.showModal({
       title: '提示',
       content: '是否要新增收货地址？',
@@ -51,10 +47,12 @@ Page({
     })
   },
   // 编辑用户的地址信息
-  editAdd:function()
+  editAdd:function(e)
   {
+    console.log(e)
+    var that = this;
 wx.redirectTo({
-  url: '/page/component/edit/edit',
+  url: '/page/component/edit/edit?index='+e.currentTarget.dataset.index,
 })
   },
   //获取微信的收货地址

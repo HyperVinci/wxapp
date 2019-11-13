@@ -9,17 +9,18 @@ Page({
     CustomBar: app.globalData.CustomBar,
     TabbarBot: app.globalData.tabbar_bottom,
     hidden: true,
-    region: ['广东省', '广州市', '番禺区'],
+    defaultAdd:false,
+    region:['广东省', '广州市', '番禺区']
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data)
 wx.showLoading({
   title: '加载中...',
 });
+
 wx.getSetting({
   success:res=>{
     if (!res.authSetting['scope.userInfo']) {
@@ -47,15 +48,31 @@ RegionChange:function(e)
 //保存用户新增的收获到data
   formSubmit:function(e)
   {
+    console.log(e)
     var detailMes =  e.detail.value;
     var that  =this;
-    that.setData({
-      cusName:detailMes.name,
-      cusPhone:detailMes.phone,
-      cusAdd:detailMes.descAdd
+let addDesc =  {
+  cusName: detailMes.name,
+  cusPhone: detailMes.phone,
+  cusAdd: detailMes.descAdd,
+  region:that.data.region,
+  defaultAdd:that.data.defaultAdd
+}
+    getApp().globalData.addArr.push(addDesc);
+    wx.setStorage({
+      key: 'addArr',
+      data: app.globalData.addArr,
+      success:function(res)
+      {
+        // console.log(res);
+      },
+      fail:function(res)
+      {
+        console.log(res);
+      }
     })
- wx.navigateBack({
-   
+ wx.redirectTo({
+   url: '/page/component/address/address',
  })
   },
   // switch选择框改变时触发,判断是否为默认地址

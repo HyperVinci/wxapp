@@ -40,6 +40,6 @@
   </form>
   <view class="cu-form-group">
     <view class='title'>设置默认地址</view>
-    <switch class='orange sm' checked bindchange="switchChange"></switch>
+    <switch class='orange sm' checked="{{defaultAdd}}" bindchange="switchChange"></switch>
   </view>
 </view>
