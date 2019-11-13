@@ -9,6 +9,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     TabbarBot: app.globalData.tabbar_bottom,
     hidden: true,
+    defaultAdd: false,
     region: ['广东省', '广州市', '番禺区']
   },
 
