@@ -109,6 +109,12 @@
 使用多表查询，连接orders表和uses表，可实现每个用户查看自己的订单
 
 
+### 5、地址管理
+
+### 6、文章详情
+使用wxParse插件
+
+
 ## 云数据库
 ### 1、items表：记录商品信息，在后台由管理员添加。当用户进入到商品浏览页面时获取商品信息
 ```
@@ -176,6 +182,25 @@
       {...},
       ...
     ]
+  }
+```
+
+### 4、articles表
+
+
+### 5、article_desc表
+
+
+### 7、comments表
+```
+  comment:{
+    "_id"
+    "article_desc_id"
+    "user_name"
+    "user_image_url"
+    "content"
+    "time"
+    "likes"
   }
 ```
 
