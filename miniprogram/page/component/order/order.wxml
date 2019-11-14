@@ -29,7 +29,7 @@
             <navigator open-type="navigate" hover-class='none' url="/page/component/orderDes/orderDes">
                 <view class="cu-list menu menu-avatar">
                     <view class="cu-item">
-                        <view class="cu-avatar radius lg" style="background-image:url(../../../image/文麒.jpg);"></view>
+                        <image class="cu-avatar radius lg" src="cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/微信图片_20191114154231.jpg"></image>
                         <view class='content canui-xzwz tow'>乌发卡行看过库会计法v看高度陈水扁车速一簇恐惧四不错吧i库建成并开始巨大的饭</view>
                         <view class='action price'>
                             <view class='text-price'>20.00</view>
@@ -37,7 +37,7 @@
                         </view>
                     </view>
                     <view class="cu-item">
-                        <view class="cu-avatar radius lg" style="background-image:url(../../../image/文麒.jpg);"></view>
+                        <image class="cu-avatar radius lg" src="cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/微信图片_20191114154231.jpg"></image>
                         <view class='content canui-xzwz tow'>乌米饭</view>
                         <view class='action'>
                             <view class='text-price'>20.00</view>
