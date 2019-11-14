@@ -78,6 +78,11 @@ Page({
     lines:e.detail.current
   })
   },
+  // 在首页获取部分最新文章的背景图和标题以及简略描述
+  getArticleBrief:function()
+  {
+
+  },
   //每一个公告的点击
   linesclick:function(e)
   {
@@ -170,11 +175,43 @@ var item  =e.currentTarget.dataset;
    */
   onLaunch: function(options) {
     //在这里面进行用户的登录验证
+    
 
   },
   onLoad: function(options) {
-    // console.log(app.globalData.CustomBar);
-    // console.log(app.globalData.StatusBar);
+    var ArticleList = [];
+    var thumbImgList = []
+    let that = this;
+    wx.cloud.callFunction({
+      name: "getArticleBrief",
+      success: function (res) {
+        console.log(res);
+        ArticleList = res.result.data;
+        for (let i = 0; i < ArticleList.length; i++) {
+          thumbImgList.push(ArticleList[i].thumbUrl)
+        }
+        wx.cloud.getTempFileURL({
+          fileList: thumbImgList,
+          success: function (res) {
+            console.log(res)
+            for (let i = 0; i < ArticleList.length; i++) {
+              ArticleList[i].thumbUrl = res.fileList[i].tempFileURL
+            }
+            console.log(ArticleList)
+            that.setData({
+              'ArticleList': ArticleList
+            })
+          },
+          fail: function (res) {
+            console.log(res);
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(res);
+      }
+    })
+    
   },
 
   /**
@@ -188,7 +225,7 @@ var item  =e.currentTarget.dataset;
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**
