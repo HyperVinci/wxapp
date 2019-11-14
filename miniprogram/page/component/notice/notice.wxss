@@ -1,1 +1,16 @@
 /* page/component/notice/notice.wxss */
+/* 
+.intro {
+  background-size: cover;
+  height: 500rpx;
+  display: flex;
+  justify-content: center;
+  padding-top: 10rpx;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  color: #f55;
+  font-weight: 300;
+}  */
+

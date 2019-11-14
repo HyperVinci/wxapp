@@ -1,2 +1,13 @@
 <!--page/component/notice/notice.wxml-->
-<text>page/component/notice/notice.wxml</text>
+
+<scroll-view><cover-image src='{{posterUrl}}' width= '750rpx' wx:if='{{posterUrl}}'>
+</cover-image>
+<!-- <view class='intro' >
+  <view class='text-content'>
+    <view>Hi！~欢迎来到文麟项目简介！</view>
+    <view class='margin-top-sm'>这是我们的创青春项目</view>
+    <view class='margin-top-sm'>项目是非开源的</view>
+
+    <view class='margin-top-sm'>更多功能敬请期待！</view>
+  </view></view> -->
+</scroll-view>
