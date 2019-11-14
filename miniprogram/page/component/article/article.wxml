@@ -1,14 +1,15 @@
 <view class="cu-list menu-avatar">
   <view class="cu-item">
-    <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+    <!-- <view class="cu-avatar round lg" style="background-image:url('{{article.author_image_url}}');"></view> -->
+    <image class="cu-avatar round lg" src='{{article.author_image_url}}'></image>
     <view class="content flex-sub">
-      <view class="text-grey">正义天使 凯尔</view>
+      <view class="text-grey">{{article.authorName}}</view>
       <view class="text-gray text-sm flex justify-between">
-        十天前
+        {{article.time}}
         <view class="text-gray text-sm">
-          <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
-          <text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
-          <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+          <text class="cuIcon-attentionfill margin-lr-xs"></text> {{article.clicks}}
+          <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{article.likes}}
+          <text class="cuIcon-messagefill margin-lr-xs"></text> {{article.comments}}
         </view>
       </view>
     </view>
@@ -17,41 +18,45 @@
 <!-- 引入模板 -->
 <import src="../../../wxParse/wxParse.wxml" />
 <!-- 这里data中article为bindName -->
-<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+<template is="wxParse" data="{{wxParseData:content.nodes}}" />
 
 <!-- 评论 -->
-<view class="cu-bar bg-white solid-bottom margin-top">
+<view class="cu-bar bg-white solid-bottom margin-top margin-right">
   <view class='action'>
     <text class='cuIcon-titles text-orange '></text> 2 评论
   </view>
-  <view class='action'>
+  <!-- <view class='action'>
     <switch class='sm' checked='{{isCard}}' bindchange='isCard'></switch>
-  </view>
+  </view> -->
+  <text wx:if="{{like}}" class="cuIcon-appreciatefill text-red" ontap="like">点赞</text>
+  <text wx:else class="cuIcon-appreciate text-gray" ontap="like">点赞</text>
 </view>
 
-<view class="cu-list menu-avatar comment solids-top">
+<view class="cu-list menu-avatar comment solids-top" wx:for="{{comments}}" wx:key="{{_id}}">
   <view class="cu-item">
-    <view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Morgana.png);"></view>
+    <image class="cu-avatar round" src='{{item.user_image_url}}'></image>
     <view class="content">
-      <view class="text-grey">莫甘娜</view>
+      <view class="text-grey">{{item.user_name}}</view>
       <view class="text-gray text-content text-df">
-        凯尔，你被自己的光芒变的盲目。
+        {{item.content}}
       </view>
-      <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+      <!-- <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
         <view class="flex">
           <view>凯尔：</view>
           <view class="flex-sub">妹妹，你在帮他们给黑暗找借口吗?</view>
         </view>
-      </view>
+      </view> -->
       <view class="margin-top-sm flex justify-between">
-        <view class="text-gray text-df">2018年12月4日</view>
+        <view class="text-gray text-df">{{item.time}}</view>
+        <!-- 评论点赞和留言
         <view>
           <text class="cuIcon-appreciatefill text-red"></text>
           <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>
+  <!-- 
   <view class="cu-item">
     <view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
     <view class="content">
@@ -73,5 +78,51 @@
         </view>
       </view>
     </view>
+  </view> -->
+</view>
+
+
+<view class="cu-bar bg-white solid-bottom margin-top margin-right">
+  <view class='action'>
+    <text class='cuIcon-titles text-blue '></text>我要评论
   </view>
+</view>
+
+<view class="cu-list menu-avatar comment solids-top">
+  <view class=" cu-item ">
+    <image class="cu-avatar round " src='{{userInfo.avatarUrl}}'></image>
+    <view class="content ">
+      <view class="text-grey ">{{userInfo.nickName}}</view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <textarea maxlength="-1 " bindinput="textareaInput" placeholder="评论至少要4个字符"></textarea>
+  </view>
+  <view class="cu-bar bg-white">
+    <view class="action">
+      图片上传（敬请期待）
+    </view>
+    <view class="action">
+      {{imgList.length}}/4
+    </view>
+  </view>
+  <view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class="submitComment">
+  <button class="cu-btn block bg-blue margin-tb-sm lg" ontap="uploadComment">
+    <text class="{{loding==true?'cuIcon-loading2':''}} iconfont-spin"></text> 提交
+  </button>
 </view>

@@ -9,6 +9,20 @@ page {
   margin: 0 15rpx;
 }
 
+.cu-form-group{
+  padding: 1rpx 0;
+  border-bottom: 1rpx #555;
+  margin:0 30rpx;
+}
 
+.cu-form-group textarea{
+  border:1rpx solid #d3d7d4;
+  padding: 15rpx;
+  margin: 10rpx 0 0;
+}
 
+.submitComment{
+  display: absolute;
+  right:30rpx;
+}
 
