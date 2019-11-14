@@ -9,6 +9,7 @@ Page({
     TabCur: 0,
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    lines:0,
     // scrollLeft: 0,
     swiperList: [{
       id: 0,
@@ -84,9 +85,18 @@ Page({
 const that = this;
     // console.log(that.data.lines)
     var HeadlineItem = that.data.Headlines[that.data.lines];
-    // console.log(HeadlineItem);
+    //console.log(HeadlineItem);
     // console.log(HeadlineItem.type);
-    if (HeadlineItem.type ===1)
+    
+      wx.navigateTo({
+        url: '/page/component/notice/notice',
+        success: function (res) {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', HeadlineItem )
+          console.log(HeadlineItem.title)
+        }
+      })
+    
 {
   //后续的跳转使用
 // wx.navigateTo({
@@ -107,7 +117,7 @@ var item  =e.currentTarget.dataset;
     }
     if (item.itemtype === 2) {
       wx.navigateTo({
-        url: '/pages/home/joinus/index?id=' + item.index
+        url: '/pages/home/joinus/index?id=' + item.ind
       });
     }
     if (item.itemtype === 3) {
