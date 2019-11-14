@@ -142,15 +142,16 @@ Page({
       })
 
       const time = new Date()
+      var newComment = {
+        'article_desc_id': this.data.article._id,
+        'content': content,
+        'time': time,
+        'user_image_url': this.data.userInfo.avatarUrl,
+        'user_name': this.data.userInfo.nickName
+      }
       wx.cloud.callFunction({
         name: "uploadComment",
-        data: {
-          'article_desc_id': this.data.article._id,
-          'content': content,
-          'time': time,
-          'user_image_url': this.data.userInfo.avatarUrl,
-          'user_name': this.data.userInfo.nickName
-        }
+        data: newComment
       }).then(res => {
         console.log(res.result)
         that.setData({
@@ -158,6 +159,14 @@ Page({
         })
         wx.showToast({
           title: '上传成功'
+        })
+
+        //处理下时间
+        const timeStr = newComment.time.toISOString()
+        newComment.time = timeStr.substr(0, 10) + ' ' + timeStr.substr(11, 5)
+        const c = "comments[" + this.data.comments.length + "]"
+        that.setData({
+          [c]: newComment
         })
         //设置等待时间
         setTimeout(function () {
