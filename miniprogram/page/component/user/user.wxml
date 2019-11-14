@@ -70,7 +70,7 @@
 <!-- 在这里面之后进行页面的跳转 -->
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
   <view class="cu-item arrow">
-    <navigator class='content' open-type="navigate" hover-class='none' url="/pages/order/index/index">
+    <navigator class='content' open-type="navigate" hover-class='none' url="/page/component/order/order">
       <text class='cuIcon-send text-cyan'></text>
       <text class='text-grey'>我的订单</text>
     </navigator>

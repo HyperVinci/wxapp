@@ -2,6 +2,8 @@
   "pages": [
     "page/component/index/index",
     "page/component/address/address",
+    "page/component/order/order",
+    "page/component/orderDes/orderDes",
     "page/component/notice/notice",
     "page/component/culture/culture",
     "page/component/clockin/clockin",
