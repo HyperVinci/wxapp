@@ -15,7 +15,8 @@ Page({
     userInfo: null,
     imgList: [],
     commentUploadLoding: false,
-    submitStop: false
+    submitStop: false,
+    login:false
   },
 
   /**
@@ -71,9 +72,12 @@ Page({
       success: function(res) {
         const userIn = JSON.parse(res.data);
         console.log("用户信息", userIn)
-        that.setData({
-          userInfo: userIn
-        })
+        if (userIn){
+          that.setData({
+            userInfo: userIn,
+            login: true
+          })
+        }
       }
     });
 
