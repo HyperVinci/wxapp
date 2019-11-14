@@ -36,30 +36,6 @@
     </block>
   </swiper>
 
-  <!-- <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class="action">
-      <text class="cuIcon-title text-orange "></text> 功能
-    </view>
-  </view> -->
-
-  <!-- 页面的列表导航 -->
-  <!-- <van-grid clicakble column-num="4" gutter="{{ 12 }}">
-    <van-grid-item icon="../../../../image/clockin1.png" link-type="navigateTo" url="" text="打卡" />
-    <van-grid-item icon="../../../../image/share2.png" link-type="navigateTo" url="" text="分享" />
-    <van-grid-item icon="../../../../image/shopping.png" link-type="navigateTo" url="" text="商城" />
-    <van-grid-item icon="../../../../image/articles.png" link-type="navigateTo" url="" text="精选文章" />
-  </van-grid> -->
-
-  <!-- <view class="padding bg-white">
-    <view class="flex  p-xs margin-bottom-sm mb-sm">
-      <view class="flex-sub bg-grey padding-sm margin-xs radius">1</view>
-      <view class="flex-twice bg-grey padding-sm margin-xs radius">2</view>
-    </view>
-    <view class="flex  p-xs margin-bottom-sm mb-sm">
-      <view class="flex-twice bg-grey padding-sm margin-xs radius">2</view>
-      <view class="flex-sub bg-grey padding-sm margin-xs radius">1</view>
-    </view>
-  </view> -->
   <view class="cu-list grid col-4 no-border">
     <block wx:for="{{iconList}}" wx:key="item.id">
       <view class="cu-item" bindtap="itemckcred" data-index="{{item.id}}" data-itemtype="{{item.type}}">
@@ -84,38 +60,18 @@
   </view>
 
 
-  <view class="bg-img bg-mask padding-tb-xl" ontap="toArticle" style="background-image: url('https://hbimg.huabanimg.com/d7d5d6175aba27b1c8b27baa7f883b76c4819bc826048c-g5dioU_fw658');height: 414rpx;">
+  <view wx:for="{{ArticleList}}" wx:key>
+  <view class="bg-img bg-mask padding-tb-xl" ontap="toArticle" style="background-image: url('{{item.thumbUrl}}');height: 414rpx;">
     <view class="padding-xl text-white">
       <view class="padding-xs text-xl">
-        色达佛学院
+      {{item.title}}
       </view>
       <view class="padding-xs">
-        最后一篇片心灵净土
+      {{item.descrption}}
       </view>
     </view>
   </view>
 
-
-  <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('https://hbimg.huabanimg.com/033a66af25c089ae1508003a98d41610dabae5eb912e-tzYpJ5_fw658');height: 414rpx;">
-    <view class="padding-xl text-white">
-      <view class="padding-xs text-xl">
-        西江千户苗寨
-      </view>
-      <view class="padding-xs">
-        以美丽回答一切
-      </view>
-    </view>
-  </view>
-  <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('https://hbimg.huabanimg.com/4a674fb3317cae10e86f37203674359866999f896a250-m9CMpR_fw658');height: 414rpx;">
-    <view class="padding-xl text-white">
-      <view class="padding-xs text-xl">
-        青岩古镇
-      </view>
-      <view class="padding-xs">
-        在斑驳的街道上，诉说的过去和现在
-      </view>
-    </view>
-  </view>
   <scroll-view>
 
     <scroll-view scroll-x class="bg-white nav">
