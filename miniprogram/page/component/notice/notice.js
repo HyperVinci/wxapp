@@ -50,18 +50,7 @@ Page({
         posterUrl: res.result.data[0].url
       })
     })
-    wx.cloud.callFunction({
-      name:"getImgUrl",
-      data:{
-        id:"loading"
-      },
-      success:function(res)
-      {
-        that.setData({
-          loadingImg:res.result.data.ImageUrl
-        })
-      }
-    })
+
 
   },
 
@@ -80,7 +69,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that  =this;
+    wx.cloud.callFunction({
+      name: "getImgUrl",
+      data: {
+        id: "loading"
+      },
+      success: function (res) {
+        that.setData({
+          loadingImg: res.result.data.ImageUrl
+        })
+      }
+    })
   },
 
   /**
