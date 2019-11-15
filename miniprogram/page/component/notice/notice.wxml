@@ -1,6 +1,9 @@
 <!--page/component/notice/notice.wxml-->
-
-<scroll-view><cover-image src='{{posterUrl}}' width= '750rpx' wx:if='{{posterUrl}}'>
+  <view class="bg-white flex-sub radius shadow-lg imageDiv" wx:if="{{Load}}" >
+    <image src="{{loadingImg}}" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+  </view>
+<scroll-view>
+<cover-image src='{{posterUrl}}' width= '750rpx' wx:if='{{posterUrl}}'>
 </cover-image>
 <!-- <view class='intro' >
   <view class='text-content'>

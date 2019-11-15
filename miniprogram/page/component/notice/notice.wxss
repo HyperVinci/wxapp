@@ -14,3 +14,13 @@
   font-weight: 300;
 }  */
 
+.imageDiv{
+ display:flex;
+ height: 600px;
+ justify-content: center;        
+ align-items:center; 
+}
+.imageDiv image{
+width: 400rpx;
+height: 400rpx;
+}

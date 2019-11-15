@@ -49,6 +49,43 @@ Page({
   onLoad: function(options) {
     var that = this;
     //一种友好提示用户，正在加载中
+    //获取个人中心波浪背景图
+    wx.cloud.callFunction({
+      name: "getImgUrl",
+      data: {
+        id: "wave"
+      },
+      success: function (res) {
+        that.setData({
+          waveImg: res.result.data.ImageUrl
+        })
+      }
+    })
+    wx.cloud.callFunction({
+      name:"getImgUrl",
+      data:{
+        id:"background"
+      },
+      success:function(res)
+      {
+        wx.cloud.getTempFileURL({
+          fileList: new Array(res.result.data.ImageUrl),
+          success:function(res)
+          {
+            // console.log(res)
+            that.setData({
+bgImg:res.fileList[0].tempFileURL
+            })
+          },
+          fail:res=>{
+            console.log(res)
+          }
+        })
+      },
+      fail:res=>{
+        console.log(res)
+      }
+    })
     wx.showLoading({
       title: '数据加载中',
       mask: true,
@@ -103,6 +140,8 @@ Page({
         content: '当前微信版本过低，请升级到最新版微信版本后重试',
       })
     }
+
+
   },
   //获取用户经纬度的函数
   getLocation: function() {

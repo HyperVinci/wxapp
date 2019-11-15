@@ -79,11 +79,6 @@ Page({
     lines:e.detail.current
   })
   },
-  // 在首页获取部分最新文章的背景图和标题以及简略描述
-  getArticleBrief:function()
-  {
-
-  },
   //每一个公告的点击
   linesclick:function(e)
   {

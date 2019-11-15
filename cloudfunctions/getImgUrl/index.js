@@ -6,5 +6,5 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
- return await  db.collection('articles').get()
+ return await db.collection("frequentImgs").doc(event.id).get()
 }

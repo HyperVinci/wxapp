@@ -11,16 +11,17 @@ Page({
     ColorList: app.globalData.ColorList,
     title: "",
     posterUrl: "",
-    poster_id: ""
+    poster_id: "",
+    Load:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.showLoading({
-      title: '加载中...',
-    })
+    // wx.showLoading({
+    //   title: '加载中...',
+    // })
     const db = wx.cloud.database()
     const eventChannel = this.getOpenerEventChannel()
     var that = this
@@ -49,6 +50,18 @@ Page({
         posterUrl: res.result.data[0].url
       })
     })
+    wx.cloud.callFunction({
+      name:"getImgUrl",
+      data:{
+        id:"loading"
+      },
+      success:function(res)
+      {
+        that.setData({
+          loadingImg:res.result.data.ImageUrl
+        })
+      }
+    })
 
   },
 
@@ -56,7 +69,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    wx.hideLoading();
+    var that = this;
+    that.setData({
+      Load:false
+    })
+    // wx.hideLoading();
   },
 
   /**

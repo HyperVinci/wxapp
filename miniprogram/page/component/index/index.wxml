@@ -23,7 +23,7 @@
   <!-- 首页的通知和公告 -->
   <!-- <van-notice-bar scrollable="true" text="{{notice}}" /> -->
   <!-- <van-notice-bar mode="closeable" text="{{notice}}" class="notice" /> -->
-  <swiper class="swiperitem  solid-bottom" vertical="true" circular="true" bindchange="lineschange" autoplay="true">
+  <swiper class="swiperitem  solid-bottom" vertical="true" circular="true" bindchange="lineschange" autoplay="true" interval="3000">
     <block wx:for="{{Headlines}}" wx:key="item.id">
       <swiper-item bindtap="linesclick" item-id="item.id">
         <view class="cu-bar bg-white">

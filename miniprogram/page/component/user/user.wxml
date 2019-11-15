@@ -33,7 +33,7 @@
 <view class="location_detail">
   你当前的具体位置是：{{location}}</view> -->
   <!-- 头像和昵称 -->
-<view class='UCenter-bg' style="background-image:url('http://m.qpic.cn/psb?/V13HF86115bDyo/tM9jZLAFOgahwS1oynSi14cmgWcbJDW42scBLj8OxHA!/b/dL4AAAAAAAAA&bo=EwGQAAAAAAARF6I!&rf=viewer_4')">
+<view class='UCenter-bg' style="background-image:url({{bgImg}})">
   <view class="cu-avatar round xl margin-left" style="background-image:url({{userInfo.avatarUrl}});">
     <view class="cu-tag badge {{(userInfo.gender==0)?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
   </view>
@@ -41,7 +41,7 @@
   <view class='margin-top-sm'>
     <text>{{userInfo.nickName}}</text>
   </view>
-  <image src='/image/wave.gif' mode='scaleToFill' class='gif-wave'></image>
+  <image src='{{waveImg}}' mode='scaleToFill' class='gif-wave'></image>
 </view>
 
 <button class="head_name head_name_btn cu-btn block line-blue lg" wx:if="{{!(userInfo && hasUserInfo)}}" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
