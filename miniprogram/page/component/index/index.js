@@ -9,7 +9,7 @@ Page({
     TabCur: 0,
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    lines:0,
+    lines: 0,
     // scrollLeft: 0,
     swiperList: [{
       id: 0,
@@ -18,15 +18,15 @@ Page({
     }, {
       id: 1,
       type: 'image',
-        url: 'https://hbimg.huabanimg.com/3cd837a0052bcc1984ea791ef6f42c96ffba7dc56b57a-ED9esx_fw658',
+      url: 'https://hbimg.huabanimg.com/3cd837a0052bcc1984ea791ef6f42c96ffba7dc56b57a-ED9esx_fw658',
     }, {
       id: 2,
       type: 'image',
-        url: 'https://hbimg.huabanimg.com/11414d1edfc0286dc49398b983897fa6460cd40a90fa6-o4UHIM_fw658'
+      url: 'https://hbimg.huabanimg.com/11414d1edfc0286dc49398b983897fa6460cd40a90fa6-o4UHIM_fw658'
     }, {
       id: 3,
       type: 'image',
-        url: 'https://hbimg.huabanimg.com/6604fbb1ba76fa5f6cc94aa0366c6b30435facad18e5e-SNpPxE_fw658'
+      url: 'https://hbimg.huabanimg.com/6604fbb1ba76fa5f6cc94aa0366c6b30435facad18e5e-SNpPxE_fw658'
     }, ],
     notice: "文麟-助力少数民族艺术文化走进现代生活-公益创业项目",
     Headlines: [{
@@ -73,43 +73,40 @@ Page({
     }],
   },
   //设置轮播的时候记录当前的swiper-item
-  lineschange:function(e)
-  {
-  this.setData({
-    lines:e.detail.current
-  })
+  lineschange: function(e) {
+    this.setData({
+      lines: e.detail.current
+    })
   },
   //每一个公告的点击
-  linesclick:function(e)
-  {
-const that = this;
+  linesclick: function(e) {
+    const that = this;
     // console.log(that.data.lines)
     var HeadlineItem = that.data.Headlines[that.data.lines];
     //console.log(HeadlineItem);
     // console.log(HeadlineItem.type);
-    
-      wx.navigateTo({
-        url: '/page/component/notice/notice',
-        success: function (res) {
-          // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('acceptDataFromOpenerPage', HeadlineItem )
-          console.log(HeadlineItem.title)
-        }
-      })
-    
-{
-  //后续的跳转使用
-// wx.navigateTo({
-//   url: '/pages/home/doc/index?id=' + HeadlineItem.id,
-// })
-} 
+
+    wx.navigateTo({
+      url: '/page/component/notice/notice',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', HeadlineItem)
+        console.log(HeadlineItem.title)
+      }
+    })
+
+    {
+      //后续的跳转使用
+      // wx.navigateTo({
+      //   url: '/pages/home/doc/index?id=' + HeadlineItem.id,
+      // })
+    }
   },
-  itemckcred:function(e)
-  {
-var  that = this;
-console.log(e);
-var item  =e.currentTarget.dataset;
-//以下为页面的跳转
+  itemckcred: function(e) {
+    var that = this;
+    console.log(e);
+    var item = e.currentTarget.dataset;
+    //以下为页面的跳转
     if (item.itemtype === 1) {
       wx.navigateTo({
         url: '/pages/home/doc/index?id=' + item.index
@@ -131,7 +128,7 @@ var item  =e.currentTarget.dataset;
       });
     }
   },
-  
+
   //tab被选择中的事件
   tabSelect(e) {
     console.log(e)
@@ -148,15 +145,15 @@ var item  =e.currentTarget.dataset;
     })
   },
   //跳转到文章详情页面
-  toArticle: function(){
+  toArticle: function() {
     wx.navigateTo({
       url: '../article/article',
       success: function(res) {
         console.log("跳转文章详情页面成功")
-        },
-      fail: function (res) { 
+      },
+      fail: function(res) {
         console.log("跳转文章详情页面失败")
-        },
+      },
       complete: function(res) {},
     })
   },
@@ -180,12 +177,12 @@ var item  =e.currentTarget.dataset;
    */
   onLaunch: function(options) {
     //在这里面进行用户的登录验证
-    
+
 
   },
   onLoad: function(options) {
-    
-    
+
+
   },
 
   /**
@@ -203,8 +200,8 @@ var item  =e.currentTarget.dataset;
     var thumbImgList = []
     let that = this;
     wx.cloud.callFunction({
-      name: "getArticleBrief",
-      success: function (res) {
+      name: "getArticles",
+      success: function(res) {
         console.log(res);
         ArticleList = res.result.data;
         for (let i = 0; i < ArticleList.length; i++) {
@@ -212,7 +209,7 @@ var item  =e.currentTarget.dataset;
         }
         wx.cloud.getTempFileURL({
           fileList: thumbImgList,
-          success: function (res) {
+          success: function(res) {
             console.log(res)
             for (let i = 0; i < ArticleList.length; i++) {
               ArticleList[i].thumbUrl = res.fileList[i].tempFileURL
@@ -222,12 +219,12 @@ var item  =e.currentTarget.dataset;
               'ArticleList': ArticleList
             })
           },
-          fail: function (res) {
+          fail: function(res) {
             console.log(res);
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res);
       }
     })

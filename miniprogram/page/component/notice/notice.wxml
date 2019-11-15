@@ -1,11 +1,11 @@
 <!--page/component/notice/notice.wxml-->
-  <view class="bg-white flex-sub radius shadow-lg imageDiv" wx:if="{{Load}}" >
-    <image src="{{loadingImg}}" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
-  </view>
-<scroll-view>
-<cover-image src='{{posterUrl}}' width= '750rpx' wx:if='{{posterUrl}}'>
-</cover-image>
-<!-- <view class='intro' >
+<view class="bg-white flex-sub radius shadow-lg imageDiv" wx:if="{{Load}}">
+  <image src="{{loadingImg}}" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+</view>
+<scroll-view scroll-y="true">
+  <cover-image src='{{posterUrl}}' width='750rpx' wx:if='{{posterUrl}}'>
+  </cover-image>
+  <!-- <view class='intro' >
   <view class='text-content'>
     <view>Hi！~欢迎来到文麟项目简介！</view>
     <view class='margin-top-sm'>这是我们的创青春项目</view>

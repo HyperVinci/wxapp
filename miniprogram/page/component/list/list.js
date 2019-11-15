@@ -191,7 +191,7 @@ Page({
             wx.showToast({
               title: '暂无更多内容！',
               icon: 'loading',
-              duration: 2000
+              duration: 500
             })
           }
 

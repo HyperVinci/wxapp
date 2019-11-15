@@ -3,6 +3,22 @@ var WxParse = require('../../../wxParse/wxParse.js');
 
 const db = wx.cloud.database()
 
+Date.prototype.Format = function (fmt) { //author: meizz
+  var o = {
+    "M+": this.getMonth() + 1, //月份
+    "d+": this.getDate(), //日
+    "h+": this.getHours(), //小时
+    "m+": this.getMinutes(), //分
+    "s+": this.getSeconds(), //秒
+    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+    "S": this.getMilliseconds() //毫秒
+  };
+  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  return fmt;
+}
+
 Page({
 
   /**
@@ -16,7 +32,7 @@ Page({
     imgList: [],
     commentUploadLoding: false,
     submitStop: false,
-    login:false
+    login: false
   },
 
   /**
@@ -72,7 +88,7 @@ Page({
       success: function(res) {
         const userIn = JSON.parse(res.data);
         console.log("用户信息", userIn)
-        if (userIn){
+        if (userIn) {
           that.setData({
             userInfo: userIn,
             login: true
@@ -94,7 +110,7 @@ Page({
     }).then(res => {
       var commments = res.result.data
       for (var i = 0; i < commments.length; ++i) {
-        commments[i].time = commments[i].time.substr(0, 10) + ' ' + commments[i].time.substr(11, 5)
+        commments[i].time = new Date(commments[i].time).Format("yyyy-MM-dd hh:mm:ss")
       }
 
       console.log(commments)
@@ -149,7 +165,7 @@ Page({
       var newComment = {
         'article_desc_id': this.data.article._id,
         'content': content,
-        'time': time,
+        'time': time.getTime(),
         'user_image_url': this.data.userInfo.avatarUrl,
         'user_name': this.data.userInfo.nickName
       }
@@ -165,26 +181,27 @@ Page({
           title: '上传成功'
         })
 
+        
         //处理下时间
-        const timeStr = newComment.time.toISOString()
-        newComment.time = timeStr.substr(0, 10) + ' ' + timeStr.substr(11, 5)
+        const timeStr = time.Format("yyyy-MM-dd hh:mm:ss")
+        newComment.time = timeStr
         const c = "comments[" + this.data.comments.length + "]"
         that.setData({
           [c]: newComment
         })
         //设置等待时间
-        setTimeout(function () {
+        setTimeout(function() {
           that.setData({
             submitStop: false
           })
         }, 5000)
       })
-    }else if(this.data.submitStop){
+    } else if (this.data.submitStop) {
       wx.showToast({
         title: '点击过于频繁',
         icon: 'none'
       })
-    }else if(content == null || content.length <= 3){
+    } else if (content == null || content.length <= 3) {
       wx.showToast({
         title: '评论内容过短',
         icon: 'none'

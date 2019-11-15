@@ -26,3 +26,21 @@ page {
   right:30rpx;
 }
 
+.wxParse-div{
+  font-size:32rpx;
+  line-height:48rpx;
+}
+
+.wxParse-p{
+  padding: 0 20rpx;
+  text-align: justify;
+}
+
+.wxParse-figure{
+  padding: 0 10rpx;
+}
+
+.cu-list+.cu-list {
+  margin-top: 0;
+
+}
