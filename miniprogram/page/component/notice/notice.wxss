@@ -24,3 +24,8 @@
 width: 400rpx;
 height: 400rpx;
 }
+
+
+image{
+  width: 100%;
+}

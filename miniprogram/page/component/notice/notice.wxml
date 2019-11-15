@@ -3,8 +3,8 @@
   <image src="{{loadingImg}}" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
 </view>
 <scroll-view scroll-y="true">
-  <cover-image src='{{posterUrl}}' width='750rpx' wx:if='{{posterUrl}}'>
-  </cover-image>
+  <image src='{{posterUrl}}' wx:if='{{posterUrl}}' mode="widthFix">
+  </image>
   <!-- <view class='intro' >
   <view class='text-content'>
     <view>Hi！~欢迎来到文麟项目简介！</view>
