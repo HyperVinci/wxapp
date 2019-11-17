@@ -9,6 +9,7 @@ Page({
    */
   data: {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   },
   eventGetImage: function(event) {
@@ -104,10 +105,16 @@ wx.previewImage({
   },
 
 >>>>>>> e6e0baeb0133536937886ecb449bdcffec546b6b
+=======
+
+  },
+
+>>>>>>> e6e0baeb0133536937886ecb449bdcffec546b6b
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+<<<<<<< HEAD
 <<<<<<< HEAD
     console.log(app.globalData)
     var that = this;
@@ -201,6 +208,11 @@ wx.previewImage({
   /**
    * 生命周期函数--监听页面加载
    */
+=======
+
+  },
+
+>>>>>>> e6e0baeb0133536937886ecb449bdcffec546b6b
 =======
 
   },
