@@ -180,8 +180,8 @@ Page({
   toBuy() {
     const that = this
     var cartsSelected = []
-    const carts = that.data.carts;
-    for(var i = 0; i < that.data.carts.length; ++i){
+    var carts = that.data.carts;
+    for(var i = 0; i < carts.length; ++i){
       if(carts[i].isSelect == true){
         cartsSelected[cartsSelected.length] = carts[i]
       }
@@ -194,6 +194,9 @@ Page({
       });
       return 
     }
+    wx.showLoading({
+      title: '正在处理订单',
+    })
     wx.cloud.callFunction({
       name: "subscribeOrder",
       data: {
@@ -202,12 +205,37 @@ Page({
         totalMoney: that.data.totalMoney
       },
     }).then(res => {
+      wx.hideLoading()
       console.log("提交订单成功", res)
       wx.showToast({
         title: '提交订单成功',
         icon: 'success',
         duration: 2000,
       });
+
+      //删除选中商品
+      for (var i = carts.length-1; i >= 0; --i){
+        if (carts[i].isSelect == true) {
+          carts.splice(i, 1);
+        }
+        
+      }
+      
+      // 更新data数据对象  
+      if (carts.length > 0) {
+        this.setData({
+          carts: carts
+        })
+        wx.setStorageSync('cart', carts);
+        this.priceCount();
+      } else {
+        this.setData({
+          cart: carts,
+          iscart: false,
+          hidden: true,
+        })
+        wx.setStorageSync('cart', []);
+      }
     }).catch(err => {
       console.log("提交订单失败", err)
       wx.showToast({
