@@ -1,5 +1,6 @@
+<!-- canvas画布 -->
 <canvasdrawer painting="{{painting}}" bind:getImage="eventGetImage"/>
-
+<!-- 图片展示的view -->
 <!-- <image src="{{poster}}" style="height:500px;width:300px"></image> -->
     <view>
       <image src='{{poster}}' bindtap="previewPoster" style="height:500px;width:300px" catchlongpress='saveToAlbum'></image>

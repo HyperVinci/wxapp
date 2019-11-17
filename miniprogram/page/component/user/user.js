@@ -50,6 +50,7 @@ Page({
   onLoad: function(options) {
     var that = this;
     var bgPoster = ['cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/bgPoster.jpg']
+    //将海报背景图缓存到本地
     wx.cloud.getTempFileURL({
       fileList:bgPoster,
       success:res=>{

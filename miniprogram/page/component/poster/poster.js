@@ -1,21 +1,22 @@
   // page/component/poster/poster.js
-  const app = getApp()
-
+  const app = getApp();
+var tempFileUrl ='';
   var WxParse = require('../../../wxParse/wxParse.js');
   Page({
 
     /**
      * 页面的初始数据
      */
-    data: {
-    },
+    data: {},
+    //canvasdrawer回调函数，返回图片的本地地址
     eventGetImage: function(event) {
-      console.log(event)
-      console.log(event.detail);
+      // console.log(event)
+      // console.log(event.detail);
       this.setData({
         poster: event.detail.tempFilePath,
       })
     },
+    //长按保存图片，需要处理哟用户是否授权访问相册
     saveToAlbum: function() {
       {
         const _this = this;
@@ -55,54 +56,55 @@
             }
           },
         });
-          wx.showLoading({
-            title: '正在保存中...', // 提示的内容,
-            mask: true, // 显示透明蒙层，防止触摸穿透,
-          });
-
-          wx.saveImageToPhotosAlbum({
-            filePath: _this.data.poster,
-            success() {
-              wx.showToast({
-                title: '保存成功',
-                icon: 'success',
-                duration: 2000,
-                mask: true,
-              });
-            },
-            fail() {
-              wx.showToast({
-                title: '保存失败',
-                icon: 'none',
-                duration: 2000,
-                mask: true,
-              });
-            },
-          });
-        }
-      },
-    saveImg:function() {
-      const {
-        tempImgPath
-      } = this.data;
+        wx.showLoading({
+          title: '正在保存中...', // 提示的内容,
+          mask: true, // 显示透明蒙层，防止触摸穿透,
+        });
+//保存到系统相册
+        wx.saveImageToPhotosAlbum({
+          filePath: tempFileUrl,
+          success() {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 2000,
+              mask: true,
+            });
+          },
+          fail() {
+            wx.showToast({
+              title: '保存失败',
+              icon: 'none',
+              duration: 2000,
+              mask: true,
+            });
+          },
+        });
+      }
     },
-    previewPoster:function(e)
-    {
-  var current   =  this.data.poster;
-  wx.previewImage({
-    urls: [current],
-    current:current,
-    fail:res=>{
-      console.log(res);
-    }
-  })
+    //将变量修改为poster的值
+    saveImg(){
+var that  =this;
+tempFileUrl  = that.data.poster;
+
+    },
+    //预览海报，可以识别小程序码和发送给好友
+    previewPoster: function(e) {
+      var current = this.data.poster;
+      wx.previewImage({
+        urls: [current],
+        current: current,
+        fail: res => {
+          console.log(res);
+        }
+      })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-      console.log(app.globalData)
       var that = this;
+      //传入json对象，利用canvas绘图
       that.setData({
         painting: {
           width: 320,
@@ -186,7 +188,7 @@
               width: 155
             }
           ]
-    }
+        }
       })
     },
     /**

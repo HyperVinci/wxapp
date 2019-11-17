@@ -107,11 +107,11 @@
       <text class='text-grey'>客服服务</text>
     </button>
   </view>
-
-<view class="padding flex flex-wrap justify-between align-center bg-white">
-<button bindtap="toPoster" class="cu-btn line-blue lg shadow btn">点击生成海报</button>
+<!-- 生成海报的按钮 -->
+  <view class="padding flex flex-wrap justify-between align-center bg-white">
+    <button bindtap="toPoster" class="cu-btn line-blue lg shadow btn">点击生成海报</button>
+  </view>
 </view>
-</view>
-<view class='UCenter-bg' >
-<image src="{{codeUrl}}"></image>
+<view class='UCenter-bg'>
+  <image src="{{codeUrl}}"></image>
 </view>
