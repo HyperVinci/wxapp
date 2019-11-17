@@ -4,18 +4,17 @@
 const app = getApp();
 
 
-var imgUrls = [];
-var detailImg = [];
+// var imgUrls = [];
+// var detailImg = [];
 var item_desc_id = null;
-var goods = null;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    StatusBar : app.globalData.StatusBar,
-    CustomBar : app.globalData.CustomBar,
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
     isLike: false,
     showDialog: false,
     goods: null,
@@ -101,37 +100,9 @@ Page({
       }
     }).then(data => {
       var goodsItem = data.result.data;
-      // for (var i = 0; i < goodsItem.shopGoodsImageList.length; i++) {
-      //   imgUrls[i] = goodsItem.shopGoodsImageList[i].imgUrl;
-      // }
-      // var details = goodsItem.details.split(";");
-      // for (var j = 0; j < details.length; j++) {
-      //   detailImg[j] = details[j];
-      // }
-      goods = {
-        name: goodsItem.name,
-        price: goodsItem.price,
-        count: 1,
-        itemMoney: goodsItem.price,
-        image_url: goodsItem.image_url,
-        item_desc_id: item_desc_id,
-        desc: goodsItem.desc
-        // imgUrls: imgUrls,
-        // title: goodsItem.name,
-        // price: goodsItem.price,
-        // privilegePrice: goodsItem.privilegePrice,
-        // detailImg: detailImg,
-        // imgUrl: goodsItem.imgUrl,
-        // buyRate: goodsItem.buyRate,
-        // goodsId: goodsId,
-        // count: 1,
-        // totalMoney: goodsItem.price,
-      }
-
       that.setData({
-        goods: goods
+        goods: goodsItem
       })
-      console.log(goods.name)
 
     })
 
@@ -292,5 +263,43 @@ Page({
     } catch (e) {
       console.log(e)
     }
+  },
+
+  //用户购买推送订单消息
+  buy() {
+    const that = this
+    wx.requestSubscribeMessage({
+      tmplIds: ['iClEtI_1cJOdp6E-W8j_4gMJsDTahSmHQZlMZWcatO4'],
+      success(res) {
+        console.log(res)
+        if (res.errMsg === 'requestSubscribeMessage:ok') {
+          wx.cloud.callFunction({
+            name: "subscribeOrder",
+            data: {
+              data: that.data.goods
+            },
+          }).then(res => {
+            console.log("发送消息成功", res)
+            wx.showToast({
+              title: '订阅成功',
+              icon: 'success',
+              duration: 2000,
+            });
+          }).catch(err => {
+            console.log("发送消息失败", err)
+            wx.showToast({
+              title: '订阅失败',
+              icon: 'success',
+              duration: 2000,
+            });
+          })
+        }
+      },
+      fail(err) {
+        console.log(err)
+      }
+    })
+
   }
+
 })

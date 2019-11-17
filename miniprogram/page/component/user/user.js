@@ -104,6 +104,8 @@ Page({
       })
     }
 
+    //得到小程序码
+    this.getQrcode()
 
   },
   //获取用户经纬度的函数
@@ -258,6 +260,18 @@ Page({
       fail: res => {
         console.log(res)
       }
+    })
+  },
+
+  // 得到小程序码
+  getQrcode(){
+    wx.cloud.callFunction({
+      name:"getCode"
+    }).then(res=>{
+      console.log(res)
+      this.setData({
+        codeUrl: res.result.fileID
+      })
     })
   },
 

@@ -101,3 +101,7 @@
   </view>
   
 </view>
+
+<view class='UCenter-bg' >
+<image src="{{codeUrl}}"></image>
+</view>

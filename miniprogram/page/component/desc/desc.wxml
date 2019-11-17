@@ -44,7 +44,7 @@
   <view class="line_nav"></view>
   <image bindtap="addLike" src="{{isLike?'../../../image/enshrine_select.png':'../../../image/enshrine.png'}}" />
   <button data-goodid="1" class="button-green" bindtap="toggleDialog">加入购物车</button>
-  <button class="button-red" bindtap="immeBuy" formType="submit">立即购买</button>
+  <button class="button-red" bindtap="immeBuy" formType="submit" bindtap="buy">立即购买</button>
 </view>
 
 <!--加入购物车-->
