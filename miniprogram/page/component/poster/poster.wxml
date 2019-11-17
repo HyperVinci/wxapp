@@ -1,14 +1,7 @@
-<import src="../../../wxParse/wxParse.wxml"/>
-<import src="../../../templates/header.wxml"/>
+<canvasdrawer painting="{{painting}}" bind:getImage="eventGetImage"/>
 
-
-<view class="containers">
-      <view class="wrapper">
-        <image bindtap="posterImageClick" data-src="{{posterImageUrl}}" mode="widthFix" class="posterimage"  src="{{posterImageUrl}}"></image>
+<!-- <image src="{{poster}}" style="height:500px;width:300px"></image> -->
+    <view>
+      <image src='{{poster}}' bindtap="previewPoster" style="height:500px;width:300px" catchlongpress='saveToAlbum'></image>
     </view>
-     <view style='text-align:center'>
-            <button class="gotowebpage-button" formType="submit" size="mini" bindtap="savePosterImage">保存图片</button>
-            <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
-        </view>
-        <view style="color: #888;font-size: 9pt;text-align: center;margin-top:10rpx">保存至相册后进行分享</view>
-</view>
+<!-- <button bindtap="saveToAlbum">保存到相册</button> -->

@@ -99,6 +99,7 @@
       <text class='text-grey'>意见反馈</text>
     </button>
   </view>
+
   <!-- 进入客服对话，在后台绑定客服 -->
   <view class="cu-item arrow">
     <button class='cu-btn content' open-type='contact'>
@@ -107,6 +108,21 @@
     </button>
   </view>
 
-  <button bindtap="toPoster">生成海报</button>
+<view class="padding flex flex-wrap justify-between align-center bg-white">
+<button bindtap="toPoster" class="cu-btn line-blue lg shadow btn">点击生成海报</button>
+</view>
 
+</view>
+
+
+
+<<<<<<< HEAD
+=======
+</view>
+
+
+
+>>>>>>> e6e0baeb0133536937886ecb449bdcffec546b6b
+<view class='UCenter-bg' >
+<image src="{{codeUrl}}"></image>
 </view>

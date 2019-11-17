@@ -16,7 +16,7 @@
 <view class="scroll" hidden="{{hidden}}">
 <scroll-view class="scroll" scroll-y="true">
   <view class="separate"></view>
-  <view wx:for="{{carts}}">
+  <view wx:for="{{carts}}" wx:key="_id">
     <view class="cart_container">  
       <view  wx:if="{{!item.isSelect}}">
             <icon class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}"  type="circle" size="20"></icon>

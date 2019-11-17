@@ -34,6 +34,8 @@ App({
   globalData: {
     userInfo: null,
     // addArr : [],
+    userInfo:{},
+    bgPoster:''
   },
 
   getURL: function(fileID) {
@@ -49,5 +51,5 @@ App({
         console.log('getURL失败', err)
       }
     })
-  }
+  },
 })

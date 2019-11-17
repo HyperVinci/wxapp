@@ -1,5 +1,6 @@
 // page/component/user/user.js
 //引入SDK核心类
+const app = getApp()
 var QQMapWX = require('../../../qqmap-wx-jssdk1.2/qqmap-wx-jssdk.js')
 //实例化API核心类
 const wxMap = new QQMapWX({
@@ -48,6 +49,16 @@ Page({
 
   onLoad: function(options) {
     var that = this;
+    var bgPoster = ['cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/bgPoster.jpg']
+    wx.cloud.getTempFileURL({
+      fileList:bgPoster,
+      success:res=>{
+      wx.setStorage({
+        key: 'bgPoster',
+        data: res.fileList[0].tempFileURL,
+      })
+      }
+    })
     //一种友好提示用户，正在加载中
     wx.showLoading({
       title: '数据加载中',
@@ -75,7 +86,6 @@ Page({
         })
       }
     }
-
     wx.getStorage({
       key: 'userInfo',
       success: function(res) {
@@ -83,6 +93,7 @@ Page({
         that.setData({
           userInfo: userIn
         })
+        app.globalData.userInfo = userIn;
       }
     });
     wx.getStorage({
@@ -93,6 +104,12 @@ Page({
         })
       }
     });
+    wx.getStorage({
+      key: 'bgPoster',
+      success: function(res) {
+        app.globalData.bgPoster = res.data
+      },
+    })
 
     var that = this;
     that.getLocation(); //调用获取用户的地理位置
@@ -104,19 +121,20 @@ Page({
       })
     }
 
+    //得到小程序码
+    this.getQrcode()
 
   },
-  toPoster:function()
-  {
-wx.navigateTo({
-  url: '../poster/poster?posterImageUrl=' +"cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/author.jpg",
-  success:res=>{
-    console.log(res);
-  },
-  fail:res=>{
-    console.log(res);
-  }
-})
+  toPoster: function() {
+    wx.navigateTo({
+      url: '../poster/poster?posterImageUrl=' + "cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/author.jpg",
+      success: res => {
+        console.log(res);
+      },
+      fail: res => {
+        console.log(res);
+      }
+    })
   },
   //获取用户经纬度的函数
   getLocation: function() {
@@ -234,7 +252,7 @@ wx.navigateTo({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that  =this;
+    var that = this;
 
     //获取个人中心波浪背景图
     wx.cloud.callFunction({
@@ -242,7 +260,7 @@ wx.navigateTo({
       data: {
         id: "wave"
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           waveImg: res.result.data.ImageUrl
         })
@@ -253,10 +271,10 @@ wx.navigateTo({
       data: {
         id: "background"
       },
-      success: function (res) {
+      success: function(res) {
         wx.cloud.getTempFileURL({
           fileList: new Array(res.result.data.ImageUrl),
-          success: function (res) {
+          success: function(res) {
             // console.log(res)
             that.setData({
               bgImg: res.fileList[0].tempFileURL
@@ -270,6 +288,18 @@ wx.navigateTo({
       fail: res => {
         console.log(res)
       }
+    })
+  },
+
+  // 得到小程序码
+  getQrcode() {
+    wx.cloud.callFunction({
+      name: "getCode"
+    }).then(res => {
+      console.log(res)
+      this.setData({
+        codeUrl: res.result.fileID
+      })
     })
   },
 
