@@ -108,17 +108,16 @@ Page({
     this.getQrcode()
 
   },
-  toPoster:function()
-  {
-wx.navigateTo({
-  url: '../poster/poster?posterImageUrl=' +"cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/author.jpg",
-  success:res=>{
-    console.log(res);
-  },
-  fail:res=>{
-    console.log(res);
-  }
-})
+  toPoster: function() {
+    wx.navigateTo({
+      url: '../poster/poster?posterImageUrl=' + "cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/author.jpg",
+      success: res => {
+        console.log(res);
+      },
+      fail: res => {
+        console.log(res);
+      }
+    })
   },
   //获取用户经纬度的函数
   getLocation: function() {
@@ -236,7 +235,7 @@ wx.navigateTo({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that  =this;
+    var that = this;
 
     //获取个人中心波浪背景图
     wx.cloud.callFunction({
@@ -244,7 +243,7 @@ wx.navigateTo({
       data: {
         id: "wave"
       },
-      success: function (res) {
+      success: function(res) {
         that.setData({
           waveImg: res.result.data.ImageUrl
         })
@@ -255,10 +254,10 @@ wx.navigateTo({
       data: {
         id: "background"
       },
-      success: function (res) {
+      success: function(res) {
         wx.cloud.getTempFileURL({
           fileList: new Array(res.result.data.ImageUrl),
-          success: function (res) {
+          success: function(res) {
             // console.log(res)
             that.setData({
               bgImg: res.fileList[0].tempFileURL
@@ -276,10 +275,10 @@ wx.navigateTo({
   },
 
   // 得到小程序码
-  getQrcode(){
+  getQrcode() {
     wx.cloud.callFunction({
-      name:"getCode"
-    }).then(res=>{
+      name: "getCode"
+    }).then(res => {
       console.log(res)
       this.setData({
         codeUrl: res.result.fileID

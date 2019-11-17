@@ -100,6 +100,8 @@ Page({
       }
     }).then(data => {
       var goodsItem = data.result.data;
+      goodsItem.itemMoney = goodsItem.price
+      goodsItem.count = 1
       that.setData({
         goods: goodsItem
       })
@@ -172,13 +174,14 @@ Page({
   delCount: function(e) {
     console.log("刚刚您点击了减1");
     var count = this.data.goods.count;
+    var goods = this.data.goods
     // 商品总数量-1
     if (count > 1) {
-      this.data.goods.count--;
+      goods.count--;
     }
     // 将数值与状态写回  
     this.setData({
-      goods: this.data.goods
+      goods: goods
     });
     this.priceCount();
   },
@@ -186,13 +189,14 @@ Page({
   addCount: function(e) {
     console.log("刚刚您点击了加1");
     var count = this.data.goods.count;
-    // 商品总数量-1  
+    var goods = this.data.goods
+    // 商品总数量+1  
     if (count < 10) {
-      this.data.goods.count++;
+      goods.count++;
     }
     // 将数值与状态写回  
     this.setData({
-      goods: this.data.goods
+      goods: goods
     });
     this.priceCount();
   },
@@ -265,41 +269,42 @@ Page({
     }
   },
 
-  //用户购买推送订单消息
-  buy() {
-    const that = this
-    wx.requestSubscribeMessage({
-      tmplIds: ['iClEtI_1cJOdp6E-W8j_4gMJsDTahSmHQZlMZWcatO4'],
-      success(res) {
-        console.log(res)
-        if (res.errMsg === 'requestSubscribeMessage:ok') {
-          wx.cloud.callFunction({
-            name: "subscribeOrder",
-            data: {
-              data: that.data.goods
-            },
-          }).then(res => {
-            console.log("发送消息成功", res)
-            wx.showToast({
-              title: '订阅成功',
-              icon: 'success',
-              duration: 2000,
-            });
-          }).catch(err => {
-            console.log("发送消息失败", err)
-            wx.showToast({
-              title: '订阅失败',
-              icon: 'success',
-              duration: 2000,
-            });
-          })
-        }
-      },
-      fail(err) {
-        console.log(err)
-      }
-    })
+  // //用户购买推送订单消息
+  // buy() {
+  //   const that = this
+  //   wx.requestSubscribeMessage({
+  //     tmplIds: ['iClEtI_1cJOdp6E-W8j_4gMJsDTahSmHQZlMZWcatO4'],
+  //     success(res) {
+  //       console.log(res)
+  //       if (res.errMsg === 'requestSubscribeMessage:ok') {
+  //         wx.cloud.callFunction({
+  //           name: "subscribeOrder",
+  //           data: {
+  //             data: that.data.goods,
+  //             time: new Date()
+  //           },
+  //         }).then(res => {
+  //           console.log("发送消息成功", res)
+  //           wx.showToast({
+  //             title: '订阅成功',
+  //             icon: 'success',
+  //             duration: 2000,
+  //           });
+  //         }).catch(err => {
+  //           console.log("发送消息失败", err)
+  //           wx.showToast({
+  //             title: '订阅失败',
+  //             icon: 'success',
+  //             duration: 2000,
+  //           });
+  //         })
+  //       }
+  //     },
+  //     fail(err) {
+  //       console.log(err)
+  //     }
+  //   })
 
-  }
+  // }
 
 })

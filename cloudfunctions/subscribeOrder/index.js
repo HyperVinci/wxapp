@@ -14,6 +14,8 @@ exports.main = async (event, context) => {
         touser: OPENID,
         page: 'page/component/order/order',    // 订阅消息卡片点击后会打开小程序的哪个页面
         data: event.data,
+        totalMoney: event.totalMoney,
+        time: event.time,
         templateId: 'iClEtI_1cJOdp6E-W8j_4gMJsDTahSmHQZlMZWcatO4',
         done: false, // 消息发送状态设置为 false
       }

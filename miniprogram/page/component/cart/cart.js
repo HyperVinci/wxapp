@@ -15,10 +15,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
-  onShow: function () {
+  onShow: function() {
     // 获取产品展示页保存的缓存数据（购物车的缓存数组，没有数据，则赋予一个空数组）  
     var arr = wx.getStorageSync('cart') || [];
     console.info("缓存数据：" + arr);
@@ -40,9 +40,10 @@ Page({
   },
 
   //勾选事件处理函数  
-  switchSelect: function (e) {
+  switchSelect: function(e) {
     // 获取item项的id，和数组的下标值  
-    var Allprice = 0, i = 0;
+    var Allprice = 0,
+      i = 0;
     let id = e.target.dataset.id,
 
       index = parseInt(e.target.dataset.index);
@@ -50,8 +51,7 @@ Page({
     //价钱统计
     if (this.data.carts[index].isSelect) {
       this.data.totalMoney = this.data.totalMoney + (this.data.carts[index].price * this.data.carts[index].count);
-    }
-    else {
+    } else {
       this.data.totalMoney = this.data.totalMoney - (this.data.carts[index].price * this.data.carts[index].count);
     }
     //是否全选判断
@@ -60,8 +60,7 @@ Page({
     }
     if (Allprice == this.data.totalMoney) {
       this.data.isAllSelect = true;
-    }
-    else {
+    } else {
       this.data.isAllSelect = false;
     }
     this.setData({
@@ -71,7 +70,7 @@ Page({
     })
   },
   //全选
-  allSelect: function (e) {
+  allSelect: function(e) {
     //处理全选逻辑
     let i = 0;
     if (!this.data.isAllSelect) {
@@ -81,8 +80,7 @@ Page({
         this.data.totalMoney = this.data.totalMoney + (this.data.carts[i].price * this.data.carts[i].count);
 
       }
-    }
-    else {
+    } else {
       for (i = 0; i < this.data.carts.length; i++) {
         this.data.carts[i].isSelect = false;
       }
@@ -115,7 +113,7 @@ Page({
     });
   },
   /* 减数 */
-  delCount: function (e) {
+  delCount: function(e) {
     var index = e.target.dataset.index;
     console.log("刚刚您点击了加一");
     var count = this.data.carts[index].count;
@@ -131,7 +129,7 @@ Page({
     this.priceCount();
   },
   /* 加数 */
-  addCount: function (e) {
+  addCount: function(e) {
     var index = e.target.dataset.index;
     console.log("刚刚您点击了加+");
     var count = this.data.carts[index].count;
@@ -146,7 +144,7 @@ Page({
     console.log("carts:" + this.data.carts);
     this.priceCount();
   },
-  priceCount: function (e) {
+  priceCount: function(e) {
     this.data.totalMoney = 0;
     for (var i = 0; i < this.data.carts.length; i++) {
       if (this.data.carts[i].isSelect == true) {
@@ -159,7 +157,7 @@ Page({
     })
   },
   /* 删除item */
-  delGoods: function (e) {
+  delGoods: function(e) {
     this.data.carts.splice(e.target.id.substring(3), 1);
     // 更新data数据对象  
     if (this.data.carts.length > 0) {
@@ -176,5 +174,47 @@ Page({
       })
       wx.setStorageSync('cart', []);
     }
+  },
+
+  //用户点击结算按钮
+  toBuy() {
+    const that = this
+    var cartsSelected = []
+    const carts = that.data.carts;
+    for(var i = 0; i < that.data.carts.length; ++i){
+      if(carts[i].isSelect == true){
+        cartsSelected[cartsSelected.length] = carts[i]
+      }
+    }
+    if(cartsSelected.length == 0){
+      wx.showToast({
+        title: '您未选中任何商品',
+        icon: 'none',
+        duration: 2000,
+      });
+      return 
+    }
+    wx.cloud.callFunction({
+      name: "subscribeOrder",
+      data: {
+        data: cartsSelected,
+        time: new Date().getTime(),
+        totalMoney: that.data.totalMoney
+      },
+    }).then(res => {
+      console.log("提交订单成功", res)
+      wx.showToast({
+        title: '提交订单成功',
+        icon: 'success',
+        duration: 2000,
+      });
+    }).catch(err => {
+      console.log("提交订单失败", err)
+      wx.showToast({
+        title: '提交订单失败',
+        icon: 'none',
+        duration: 2000,
+      });
+    })
   }
 })
