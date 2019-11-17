@@ -1,0 +1,8 @@
+<template name="Header">
+  <view class="header">
+    <image src="../../image/se.jpg" style="height:200rpx;width:400rpx"></image>
+    <view style="margin-top:40rpx">
+      文麒-助力少数民族文化走进现代社会
+    </view>
+  </view>
+</template>

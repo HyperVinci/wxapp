@@ -9,6 +9,16 @@
   <cu-custom bgColor="bg-gradual-blue">
     <view slot="content">文麒HyperVinci</view>
   </cu-custom>
+  <!--搜索区-->
+  <!-- <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+    <view class='search-form round'>
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="输入关键词" confirm-type="search"></input>
+    </view>
+    <view class='action'>
+      <button class='cu-btn bg-gradual-green shadow-blur round' bindtap="search">搜索</button>
+    </view>
+  </view> -->
 
   <!-- 首页轮播图 -->
   <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">

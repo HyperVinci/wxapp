@@ -1,5 +1,5 @@
 {
-  "name": "getAddByOppenId",
+  "name": "clickServer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wx-server-sdk": "latest",
-    "request":"2.88.0"
+    "wx-server-sdk": "latest"
   }
 }

@@ -106,6 +106,18 @@ Page({
 
 
   },
+  toPoster:function()
+  {
+wx.navigateTo({
+  url: '../poster/poster?posterImageUrl=' +"cloud://zizxzy-rfzn1.7a69-zizxzy-rfzn1-1300589022/author.jpg",
+  success:res=>{
+    console.log(res);
+  },
+  fail:res=>{
+    console.log(res);
+  }
+})
+  },
   //获取用户经纬度的函数
   getLocation: function() {
     var self = this;
