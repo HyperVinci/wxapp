@@ -70,6 +70,7 @@ Page({
    */
   onShow: function() {
     var that  =this;
+    //获取加载gif图
     wx.cloud.callFunction({
       name: "getImgUrl",
       data: {

@@ -191,6 +191,11 @@ Page({
   onReady: function() {
 
   },
+  //处理客服消息的函数，发送数据到云函数进行处理
+  handleContact(e)
+  {
+    console.log(e.detail.path)
+  },
 
   /**
    * 生命周期函数--监听页面显示

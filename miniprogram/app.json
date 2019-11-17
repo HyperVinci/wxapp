@@ -1,6 +1,7 @@
 {
   "pages": [
     "page/component/index/index",
+    "page/component/poster/poster",
     "page/component/address/address",
     "page/component/order/order",
     "page/component/orderDes/orderDes",
